@@ -654,21 +654,94 @@
       }
     }
 
+/* ========================================================== EDITORIAL
+STORY SECTION ==========================================================
+*/
+
+.editorial-story{ width:min(1500px,92vw); margin:0 auto; padding:12rem 0
+10rem; color:var(--ink); }
+
+.story-block{ position:relative; padding:10rem 0 12rem;
+border-bottom:1px solid rgba(0,0,0,.08); }
+.story-block:last-of-type{border-bottom:none;}
+
+.story-number{ position:absolute; top:2rem; left:0;
+font-size:clamp(7rem,14vw,14rem); font-weight:900;
+color:rgba(0,0,0,.045); line-height:.8; user-select:none;
+pointer-events:none; }
+
+.story-header{position:relative;z-index:2;margin-bottom:5rem;}
+
+.story-label{ margin:0 0 1.2rem; font-size:.8rem; letter-spacing:.45em;
+text-transform:uppercase; color:rgba(0,0,0,.45); }
+
+.story-title{ margin:0; font-size:clamp(3.5rem,8vw,8rem);
+line-height:.88; letter-spacing:.03em; text-transform:uppercase;
+font-weight:900; max-width:10ch; }
+
+.story-content{ max-width:820px; margin:0 auto 6rem; }
+
+.story-content p{ font-size:clamp(1.05rem,1.2vw,1.2rem); line-height:2;
+color:rgba(0,0,0,.76); margin:0 0 2rem; }
+
+.story-content strong{color:var(--ink);}
+
+.story-image{ margin:6rem auto; overflow:hidden; border-radius:30px; }
+
+.story-image.large{max-width:100%;}
+
+.story-image img{ width:100%; height:auto; display:block;
+border-radius:30px; transition:transform .8s ease; }
+
+.story-image:hover img{transform:scale(1.03);}
+
+.story-list{ max-width:820px; margin:5rem auto; }
+
+.story-list h3{ margin:0 0 2rem; font-size:.8rem; letter-spacing:.45em;
+text-transform:uppercase; color:rgba(0,0,0,.5); }
+
+.story-list ul{ list-style:none; padding:0; margin:0; display:grid;
+grid-template-columns:repeat(2,minmax(220px,1fr)); gap:1rem 3rem; }
+
+.story-list li{ padding:.35rem 0; font-size:1.05rem; border-bottom:1px
+solid rgba(0,0,0,.08); }
+
+.story-quote{ max-width:900px; margin:8rem auto 0; text-align:center;
+font-size:clamp(2rem,4vw,4rem); line-height:1.2; font-weight:300;
+font-style:italic; color:rgba(0,0,0,.9); }
+
+.story-ending{ padding:14rem 0 8rem; text-align:center; }
+
+.ending-label{ margin:0 0 1rem; font-size:.8rem; letter-spacing:.45em;
+text-transform:uppercase; color:rgba(0,0,0,.45); }
+
+.story-ending h2{ margin:0; font-size:clamp(3rem,7vw,7rem);
+line-height:.9; text-transform:uppercase; font-weight:900; }
+
+.story-ending p{ max-width:760px; margin:2rem auto 0; font-size:1.15rem;
+line-height:2; color:rgba(0,0,0,.72); }
+
+@media (max-width:900px){
+.editorial-story{width:min(94vw,760px);padding:8rem 0;}
+.story-block{padding:7rem 0;} .story-number{font-size:5rem;}
+.story-title{font-size:clamp(2.5rem,10vw,4.5rem);}
+.story-content{margin-bottom:4rem;} .story-list
+ul{grid-template-columns:1fr;}
+.story-quote{font-size:clamp(1.6rem,7vw,2.6rem);} }
 
 
     /* =========================
    INTRO HEADING
 ========================== */
 
-.intro-heading{
-
-    max-width:1400px;
-
-    margin:0 auto;
+.intro-heading {
+    max-width: 1400px;
+    margin: 0 auto;
 
     /* keep large space from hero */
-    padding:18rem 4vw 2.5rem;
+    padding: 18rem 4vw 2.5rem;
 
+    padding-left: 2.3rem; /* Change this value as needed */
 }
 
 .intro-kicker{
@@ -780,7 +853,7 @@
     <div class="card-left">
         <div>
 
-            <p class="card-kicker">Programming</p>
+            <p class="card-kicker">Developer</p>
 
             <h2 class="card-title">
                 Building Things That Matters.
@@ -872,7 +945,7 @@
 
         <div>
 
-            <p class="card-kicker">Visual Storytelling</p>
+            <p class="card-kicker">Visual Storyteller</p>
 
             <h2 class="card-title">
                 STORIES
@@ -912,15 +985,250 @@
           </div>
         </div>
 
-        <div class="section-footer">
-          <span>Programming</span>
-          <span>Founder</span>
-          <span>Filmmaking</span>
-          <span>Scroll to explore</span>
-        </div>
       </div>
     </div>
   </section>
+
+
+
+
+  <!-- ==========================================================
+    SKILLS DETAILED STORY
+=========================================================== -->
+<section class="editorial-story" id="editorialStory">
+
+    <!-- ======================================================
+         DEVELOPER
+    ======================================================= -->
+    <section class="story-block" id="developer">
+
+        <div class="story-number">01</div>
+
+        <div class="story-header">
+
+            <p class="story-label">
+                DEVELOPER
+            </p>
+
+            <h2 class="story-title">
+                Turning<br>
+                Ideas Into<br>
+                Reality
+            </h2>
+
+        </div>
+
+        <div class="story-content">
+
+            <p>
+                Software has always fascinated me because it transforms imagination into something tangible. A simple idea can become a tool that saves time, solves problems, or changes how people interact with the world.
+            </p>
+
+            <p>
+                For me, programming isn't just about writing code—it's about understanding problems. Every project begins by asking <strong>why</strong> before deciding <strong>how</strong>. Whether I'm building a client portal, a management system, or experimenting with a new product, I focus on creating solutions that are reliable, intuitive, and built to last.
+            </p>
+
+            <p>
+                I'm constantly learning, refining my approach, and exploring better ways to architect software. Every bug teaches patience. Every project teaches perspective. Every line of code is another step toward becoming a better builder.
+            </p>
+
+        </div>
+
+
+        <div class="story-list">
+
+            <h3>What I Enjoy</h3>
+
+            <ul>
+
+                <li>Full-Stack Development</li>
+                <li>System Architecture</li>
+                <li>Backend Development</li>
+                <li>UI & Interaction Design</li>
+                <li>Performance Optimization</li>
+                <li>Product Development</li>
+
+            </ul>
+
+        </div>
+
+        <blockquote class="story-quote">
+
+            Every line of code is another step toward becoming a better builder.
+
+        </blockquote>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         FOUNDER
+    ======================================================= -->
+
+    <section class="story-block" id="founder">
+
+        <div class="story-number">02</div>
+
+        <div class="story-header">
+
+            <p class="story-label">
+                FOUNDER
+            </p>
+
+            <h2 class="story-title">
+                Building<br>
+                More Than<br>
+                Products
+            </h2>
+
+        </div>
+
+        <div class="story-content">
+
+            <p>
+                I've always been drawn to creating things from scratch. Not because it's easy, but because there's something exciting about taking an idea that exists only in your mind and turning it into something real.
+            </p>
+
+            <p>
+                Being a founder has taught me that technology is only one part of building something meaningful. Great products begin with understanding people—their frustrations, their needs, and the opportunities hidden in everyday problems.
+            </p>
+
+            <p>
+                I'm fascinated by startups because they combine creativity, strategy, design, engineering, and resilience into a single journey. Whether an idea succeeds or fails, every experiment adds another lesson that shapes the next one.
+            </p>
+
+            <p>
+                For me, entrepreneurship isn't defined by launching companies. It's defined by the willingness to take ownership, embrace uncertainty, and keep building.
+            </p>
+
+        </div>
+
+        <div class="story-list">
+
+            <h3>What Drives Me</h3>
+
+            <ul>
+
+                <li>Startup Building</li>
+                <li>Product Strategy</li>
+                <li>Opportunity Discovery</li>
+                <li>Business Thinking</li>
+                <li>Continuous Experimentation</li>
+                <li>Long-Term Vision</li>
+
+            </ul>
+
+        </div>
+
+        <blockquote class="story-quote">
+
+            Ownership begins where certainty ends.
+
+        </blockquote>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         CREATIVE
+    ======================================================= -->
+
+    <section class="story-block" id="creative">
+
+        <div class="story-number">03</div>
+
+        <div class="story-header">
+
+            <p class="story-label">
+                CREATIVE
+            </p>
+
+            <h2 class="story-title">
+                Stories<br>
+                Beyond<br>
+                The Screen
+            </h2>
+
+        </div>
+
+        <div class="story-content">
+
+            <p>
+                Some ideas are easier to feel than explain.
+            </p>
+
+            <p>
+                That's what drew me toward visual storytelling.
+            </p>
+
+            <p>
+                Whether I'm editing a cinematic reel, designing a poster, capturing footage, or experimenting with motion graphics, I enjoy creating visuals that leave an impression. Every project is an opportunity to communicate emotion, atmosphere, and personality without relying solely on words.
+            </p>
+
+            <p>
+                I don't see creativity as separate from technology—it complements it. The same attention to detail that shapes a good edit also shapes a great user experience. Every frame, transition, composition, and color choice contributes to the overall story.
+            </p>
+
+            <p>
+                For me, creativity isn't about making things look beautiful. It's about making people feel something.
+            </p>
+
+        </div>
+
+        <div class="story-list">
+
+            <h3>Creative Interests</h3>
+
+            <ul>
+
+                <li>Video Editing</li>
+                <li>Videography</li>
+                <li>Poster Design</li>
+                <li>Creative Direction</li>
+                <li>Motion Graphics</li>
+                <li>Visual Storytelling</li>
+
+            </ul>
+
+        </div>
+
+        <blockquote class="story-quote">
+
+            People remember how something made them feel.
+
+        </blockquote>
+
+    </section>
+
+
+
+    <!-- ======================================================
+         CLOSING
+    ======================================================= -->
+
+    <section class="story-ending">
+
+
+        <h2>
+            Different Paths.<br>
+            One Purpose.
+        </h2>
+
+        <p>
+            Engineering teaches me how to build.
+            Entrepreneurship teaches me what to build.
+            Creativity teaches me how to make people care.
+        </p>
+
+        <p>
+            Together, they shape the way I approach every challenge—combining logic, curiosity, and storytelling to create experiences that are both meaningful and memorable.
+        </p>
+
+    </section>
+
+</section>
 
   <!-- =========================
        NEXT SECTION PLACEHOLDER
@@ -1081,6 +1389,98 @@
         updateHorizontalSection();
       }, { passive: true });
     })();
-  </script>
+
+
+
+
+
+
+
+    /* ========================================================== EDITORIAL
+STORY INTERACTIONS Lightweight Apple-style reveal animations
+========================================================== */
+
+(() => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) return;
+
+  const blocks = document.querySelectorAll(".story-block");
+  const images = document.querySelectorAll(".story-image img");
+  const quotes = document.querySelectorAll(".story-quote");
+
+  // Initial states
+  blocks.forEach((block) => {
+    const header = block.querySelector(".story-header");
+    const content = block.querySelector(".story-content");
+    const list = block.querySelector(".story-list");
+    const image = block.querySelector(".story-image");
+    const quote = block.querySelector(".story-quote");
+
+    [header, content, list, image, quote].forEach((el) => {
+      if (!el) return;
+      el.style.opacity = "0";
+      el.style.transform = "translateY(40px)";
+      el.style.transition =
+        "opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)";
+      el.style.willChange = "opacity, transform";
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const block = entry.target;
+        const header = block.querySelector(".story-header");
+        const content = block.querySelector(".story-content");
+        const image = block.querySelector(".story-image");
+        const list = block.querySelector(".story-list");
+        const quote = block.querySelector(".story-quote");
+
+        const sequence = [header, content, image, list, quote];
+
+        sequence.forEach((el, i) => {
+          if (!el) return;
+          setTimeout(() => {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          }, i * 180);
+        });
+
+        observer.unobserve(block);
+      });
+    },
+    { threshold: 0.22 }
+  );
+
+  blocks.forEach((block) => observer.observe(block));
+
+  // Gentle image parallax + quote fade
+  window.addEventListener(
+    "scroll",
+    () => {
+      const viewport = window.innerHeight;
+
+      images.forEach((img) => {
+        const rect = img.getBoundingClientRect();
+        const progress = (rect.top + rect.height * 0.5 - viewport * 0.5) / viewport;
+        const translate = progress * -30;
+        const scale = 1.05 - Math.abs(progress) * 0.04;
+
+        img.style.transform = `translateY(${translate}px) scale(${Math.max(scale, 0.98)})`;
+      });
+
+      quotes.forEach((q) => {
+        const rect = q.getBoundingClientRect();
+        const visible = 1 - Math.min(Math.abs(rect.top - viewport * 0.5) / viewport, 1);
+        q.style.opacity = (0.35 + visible * 0.65).toFixed(2);
+      });
+    },
+    { passive: true }
+  );
+})();
+
+</script>
 </body>
 </html>
