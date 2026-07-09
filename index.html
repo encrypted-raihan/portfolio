@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raihan Shiras</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
   <style>
-    /* =========================
-       BASE / GLOBAL
-    ========================== */
     :root{
       --bg-1: #fcfbf8;
       --bg-2: #f2eee7;
@@ -48,12 +49,7 @@
     }
 
     * { box-sizing: border-box; }
-    html, body {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-
+    html, body { width: 100%; margin: 0; padding: 0; }
     body{
       overflow-x: hidden;
       background:
@@ -67,7 +63,6 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
@@ -77,13 +72,6 @@
       font-size: 9px;
       font-weight: 500;
     }
-
-    .line{
-      width: 3rem;
-      height: 1px;
-      background: rgba(0,0,0,.55);
-    }
-
     .ambient-glow{
       position: absolute;
       inset: 0;
@@ -94,7 +82,6 @@
         radial-gradient(circle at 50% 78%, rgba(0,0,0,.03), transparent 28%);
       z-index: 1;
     }
-
     .grain{
       position: absolute;
       inset: 0;
@@ -108,7 +95,6 @@
       background-size: 3px 3px, 4px 4px, 12px 12px;
       mix-blend-mode: overlay;
     }
-
     .foreground-overlay{
       position: absolute;
       inset: -2%;
@@ -124,12 +110,10 @@
       animation: branchFloat 12s ease-in-out infinite;
       transition: transform 140ms linear;
     }
-
     @keyframes branchFloat{
       0%,100% { filter: saturate(1.02) contrast(1.02); }
       50% { filter: saturate(1.04) contrast(1.03); }
     }
-
     .hero-text{
       font-size: var(--hero-size);
       font-weight: var(--hero-weight);
@@ -139,39 +123,23 @@
       color: var(--ink);
       text-shadow: 0 0 1px rgba(0,0,0,.04);
     }
-
     .hero-name{
       opacity: var(--name-opacity);
       will-change: transform, opacity;
       transition: opacity 1.15s cubic-bezier(.22,1,.36,1), transform 1.15s cubic-bezier(.22,1,.36,1);
     }
-
     body.loaded .hero-name{
       --name-opacity: 1;
       --raihan-load-x: 0px;
       --shiras-load-x: 0px;
     }
-
     .pos-raihan{
-      transform: translate(
-        calc(var(--raihan-x) + var(--raihan-load-x) + var(--raihan-offset-x)),
-        var(--raihan-y)
-      );
+      transform: translate(calc(var(--raihan-x) + var(--raihan-load-x) + var(--raihan-offset-x)), var(--raihan-y));
     }
-
     .pos-shiras{
-      transform: translate(
-        calc(var(--shiras-x) + var(--shiras-load-x) + var(--shiras-offset-x)),
-        var(--shiras-y)
-      );
+      transform: translate(calc(var(--shiras-x) + var(--shiras-load-x) + var(--shiras-offset-x)), var(--shiras-y));
     }
-
-    .hero-outer{
-      position: relative;
-      height: 100vh;
-      isolation: isolate;
-    }
-
+    .hero-outer{ position: relative; height: 100vh; isolation: isolate; }
     .hero-sticky{
       position: relative;
       min-height: 100vh;
@@ -181,17 +149,13 @@
       padding: 2rem 1.5rem;
       overflow: hidden;
     }
-
-    .hero-content,
-    .topbar,
-    .bottombar{
+    .hero-content, .topbar, .bottombar{
       position: relative;
       z-index: 10;
       opacity: var(--hero-top-opacity);
       transform: translateY(var(--hero-top-translate));
       transition: opacity 900ms cubic-bezier(.22,1,.36,1), transform 900ms cubic-bezier(.22,1,.36,1);
     }
-
     body.loaded .hero-content,
     body.loaded .topbar,
     body.loaded .bottombar{
@@ -199,16 +163,34 @@
       --hero-top-translate: 0px;
     }
 
-    /* =========================
-       HORIZONTAL SKILLS SECTION
-    ========================== */
+    .intro-heading {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18rem 4vw 2.5rem;
+      padding-left: 2.3rem;
+    }
+    .intro-title{
+      font-size:clamp(3rem,7vw,7rem);
+      font-weight:900;
+      line-height:.8;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin:0;
+    }
+    .intro-subtitle{
+      margin-top:1.8rem;
+      font-size:1.15rem;
+      line-height:1.8;
+      color:rgba(0,0,0,.62);
+      max-width:32rem;
+    }
+
     .horizontal-shell{
       position: relative;
       padding-top: 12vh;
       padding-bottom: 10vh;
-      height: 300vh; /* overwritten by JS to match track distance */
+      height: 300vh;
     }
-
     .horizontal-pin{
       position: sticky;
       top: 6vh;
@@ -220,7 +202,6 @@
       justify-content: center;
       isolation: isolate;
     }
-
     .section-shell{
       position: absolute;
       inset: 0;
@@ -228,14 +209,11 @@
       transform: translateY(var(--section-translate));
       transition: opacity 900ms cubic-bezier(.22,1,.36,1), transform 900ms cubic-bezier(.22,1,.36,1);
     }
-
     .section-shell.is-visible{
       --section-opacity: 1;
       --section-translate: 0px;
     }
-
-    .section-header,
-    .section-footer{
+    .section-header{
       width: 100%;
       max-width: 1400px;
       margin-left: auto;
@@ -247,40 +225,26 @@
       z-index: 4;
       position: relative;
       opacity: .52;
+      margin-bottom: 1.1rem;
     }
-
-    .section-header{ margin-bottom: 1.1rem; }
-    .section-footer{ margin-top: 1rem; padding: 0 .2rem; }
-
-    .section-title,
-    .section-counter span,
-    .section-footer span{
-      font-size: 9px;
-      letter-spacing: .34em;
-      text-transform: uppercase;
-    }
-
     .section-counter{
       display: flex;
       gap: .9rem;
     }
-
     .section-counter span{
+      font-size: 9px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
       opacity: .35;
       transition: opacity 200ms ease;
     }
-
-    .section-counter .active{
-      opacity: 1;
-    }
-
+    .section-counter .active{ opacity: 1; }
     .track-viewport{
       width: 100%;
       overflow: hidden;
       position: relative;
       z-index: 3;
     }
-
     .track{
       display: flex;
       gap: 1.4rem;
@@ -289,7 +253,6 @@
       will-change: transform;
       transform: translate3d(var(--track-x), 0, 0);
     }
-
     .skill-card{
       flex: 0 0 auto;
       width: min(88vw, 1180px);
@@ -297,15 +260,13 @@
       border-radius: 32px;
       overflow: hidden;
       border: 1px solid var(--card-border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.72), rgba(249,247,243,.55));
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(249,247,243,.55));
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       position: relative;
     }
-
     .skill-card::before{
       content: "";
       position: absolute;
@@ -317,25 +278,13 @@
       pointer-events: none;
       z-index: 0;
     }
-
-    .card-left,
-    .card-right{
-      position: relative;
-      z-index: 1;
-    }
-
+    .card-left, .card-right{ position: relative; z-index: 1; }
     .card-left{
-
-        padding:clamp(2rem,3vw,3rem);
-
-        display:flex;
-
-        flex-direction:column;
-
-        justify-content:space-between;
-
+      padding:clamp(2rem,3vw,3rem);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
     }
-
     .card-kicker{
       font-size: .8rem;
       letter-spacing: .35em;
@@ -343,7 +292,6 @@
       opacity: .42;
       margin: 0 0 2rem;
     }
-
     .card-title{
       font-size: clamp(2.6rem, 4.8vw, 6rem);
       line-height: .92;
@@ -353,38 +301,13 @@
       font-weight: 900;
       max-width: 9ch;
     }
-
     .card-copy{
-
-        max-width:34rem;
-
-        font-size:clamp(1rem,1.2vw,1.15rem);
-
-        line-height:1.9;
-
-        opacity:.72;
-
-        margin-top:3rem;
-
+      max-width:34rem;
+      font-size:clamp(1rem,1.2vw,1.15rem);
+      line-height:1.9;
+      opacity:.72;
+      margin-top:3rem;
     }
-
-    .card-meta{
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin-top: 1.4rem;
-    }
-
-    .pill{
-      padding: .7rem .95rem;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.1);
-      font-size: .74rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      background: rgba(255,255,255,.4);
-    }
-
     .cta{
       display: inline-flex;
       align-items: center;
@@ -394,14 +317,12 @@
       letter-spacing: .28em;
       text-transform: uppercase;
     }
-
     .cta .arrow{
       width: 2rem;
       height: 1px;
       background: rgba(0,0,0,.7);
       position: relative;
     }
-
     .cta .arrow::after{
       content: "";
       position: absolute;
@@ -413,132 +334,297 @@
       border-right: 1px solid rgba(0,0,0,.7);
       transform: rotate(45deg);
     }
-
     .card-right{
-
-        position:relative;
-
-        display:flex;
-
-        align-items:center;
-
-        justify-content:flex-end;
-
-        overflow:visible;
-
-        margin-left:-18%;
-
-        z-index:1;
-
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      overflow:visible;
+      margin-left:-18%;
+      z-index:1;
     }
-
     .visual-panel{
-
-        position:relative;
-
-        width:130%;
-
-        height:112%;
-
-        overflow:visible;
-
-        border:none;
-        background:none;
-        box-shadow:none;
-
+      position:relative;
+      width:130%;
+      height:112%;
+      overflow:visible;
+      border:none;
+      background:none;
+      box-shadow:none;
     }
-
-
     .visual-panel .art-image{
-
-        position:absolute;
-
-        inset:0;
-
-        width:100%;
-        height:100%;
-
-        object-fit:cover;
-        object-position:center;
-
-        transform:scale(1.05);
-
-        transition:
-            transform .8s cubic-bezier(.22,1,.36,1);
-
-        filter:
-
-            saturate(.97)
-
-            contrast(1.03)
-
-            brightness(.99);
-
-        z-index:1;
-
-        /* MUCH LONGER FADE */
-
-        -webkit-mask-image:
-
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      transform:scale(1.05);
+      transition: transform .8s cubic-bezier(.22,1,.36,1);
+      filter: saturate(.97) contrast(1.03) brightness(.99);
+      z-index:1;
+      -webkit-mask-image:
         linear-gradient(
-
-            to right,
-
-            transparent 0%,
-
-            rgba(0,0,0,.08) 8%,
-
-            rgba(0,0,0,.18) 14%,
-
-            rgba(0,0,0,.35) 20%,
-
-            rgba(0,0,0,.60) 28%,
-
-            rgba(0,0,0,.82) 38%,
-
-            black 48%
-
+          to right,
+          transparent 0%,
+          rgba(0,0,0,.08) 8%,
+          rgba(0,0,0,.18) 14%,
+          rgba(0,0,0,.35) 20%,
+          rgba(0,0,0,.60) 28%,
+          rgba(0,0,0,.82) 38%,
+          black 48%
         );
-
-        mask-image:
-
+      mask-image:
         linear-gradient(
-
-            to right,
-
-            transparent 0%,
-
-            rgba(0,0,0,.08) 8%,
-
-            rgba(0,0,0,.18) 14%,
-
-            rgba(0,0,0,.35) 20%,
-
-            rgba(0,0,0,.60) 28%,
-
-            rgba(0,0,0,.82) 38%,
-
-            black 48%
-
+          to right,
+          transparent 0%,
+          rgba(0,0,0,.08) 8%,
+          rgba(0,0,0,.18) 14%,
+          rgba(0,0,0,.35) 20%,
+          rgba(0,0,0,.60) 28%,
+          rgba(0,0,0,.82) 38%,
+          black 48%
         );
-
     }
 
-    /* =========================
-       OPTIONAL FUTURE SECTIONS
-    ========================== */
+    .editorial-story{
+      width:min(1500px,92vw);
+      margin:0 auto;
+      padding:12rem 0 10rem;
+      color:var(--ink);
+    }
+    .story-intro{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 2rem;
+      align-items:end;
+      margin-bottom: 4rem;
+    }
+    .intro-eyebrow{
+      margin:0 0 1rem;
+      font-size:.78rem;
+      letter-spacing:.45em;
+      text-transform:uppercase;
+      color:rgba(0,0,0,.45);
+    }
+    .intro-big{
+      margin:0;
+      font-size:clamp(3.2rem,7vw,7rem);
+      line-height:.86;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-weight:900;
+      max-width: 10ch;
+    }
+    .intro-copy{
+      margin:0;
+      max-width:34rem;
+      font-size:1.08rem;
+      line-height:1.95;
+      color:rgba(0,0,0,.68);
+    }
+
+    .story-stack{ margin-top: 6rem; }
+
+    /* IMPORTANT: overflow must be visible for sticky to work */
+    .story-chapter{
+      position:relative;
+      min-height: 170vh;
+      border-top:1px solid rgba(0,0,0,.08);
+      padding: 6rem 0 10rem;
+      overflow: visible;
+      isolation:isolate;
+    }
+    .story-chapter:last-of-type{
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
+    .story-bg-word{
+      position:absolute;
+      inset:auto 0 auto auto;
+      right:-4%;
+      top: 0;
+      font-size: clamp(10rem, 22vw, 22rem);
+      line-height: .82;
+      font-weight: 900;
+      letter-spacing: .02em;
+      color: rgba(0,0,0,.035);
+      text-transform: uppercase;
+      user-select:none;
+      pointer-events:none;
+      z-index:0;
+      transform: translateY(12%);
+      white-space: nowrap;
+    }
+    .chapter-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: minmax(240px, 420px) 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items:start;
+    }
+    .chapter-sticky{
+      position:sticky;
+      top: 8vh;
+      align-self:start;
+      padding-right: 1rem;
+      height: fit-content;
+      z-index: 3;
+    }
+    .chapter-num{
+      margin:0 0 1.2rem;
+      font-size: clamp(5rem, 11vw, 11rem);
+      line-height:.8;
+      font-weight:900;
+      color:rgba(0,0,0,.055);
+      user-select:none;
+    }
+    .chapter-label{
+      margin:0 0 1rem;
+      font-size:.78rem;
+      letter-spacing:.45em;
+      text-transform:uppercase;
+      color:rgba(0,0,0,.5);
+    }
+    .chapter-title{
+      margin:0;
+      font-size:clamp(3rem,5vw,5.8rem);
+      line-height:.88;
+      text-transform:uppercase;
+      font-weight:900;
+      letter-spacing:.03em;
+      max-width: 8ch;
+    }
+    .chapter-rule{
+      width: 4rem;
+      height: 1px;
+      background: rgba(0,0,0,.55);
+      margin: 2rem 0;
+      transform-origin:left center;
+      transform: scaleX(0);
+    }
+    .chapter-kicker{
+      max-width: 24rem;
+      font-size: .94rem;
+      line-height: 1.9;
+      color: rgba(0,0,0,.6);
+      margin:0;
+    }
+    .chapter-body{
+      padding-top: .4rem;
+      display:grid;
+      gap: 1.4rem;
+      max-width: 900px;
+    }
+    .chapter-paragraph{
+      margin:0;
+      font-size: clamp(1.05rem, 1.2vw, 1.18rem);
+      line-height: 2;
+      color: rgba(0,0,0,.76);
+      max-width: 44rem;
+    }
+    .chapter-paragraph strong{ color: var(--ink); }
+
+    .capabilities-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .capability{
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 24px;
+      padding: 1.1rem 1.15rem;
+      background: rgba(255,255,255,.38);
+      box-shadow: 0 12px 40px rgba(0,0,0,.04);
+      transform: translateY(24px);
+      opacity: 0;
+    }
+    .capability span{
+      display:block;
+      font-size:.72rem;
+      letter-spacing:.38em;
+      text-transform:uppercase;
+      color:rgba(0,0,0,.42);
+      margin-bottom:.75rem;
+    }
+    .capability strong{
+      display:block;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-weight: 700;
+      color: rgba(0,0,0,.9);
+    }
+    .story-quote{
+      max-width: 900px;
+      margin: 6rem 0 0;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.95);
+      opacity: .94;
+    }
+    .story-metrics{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .metric{
+      border-top: 1px solid rgba(0,0,0,.1);
+      padding-top: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .metric .value{
+      display:block;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+    .metric .label{
+      display:block;
+      margin-top:.6rem;
+      font-size:.78rem;
+      letter-spacing:.32em;
+      text-transform:uppercase;
+      color:rgba(0,0,0,.5);
+    }
+    .story-ending{
+      padding: 10rem 0 4rem;
+      text-align:center;
+      border-top: 1px solid rgba(0,0,0,.08);
+      margin-top: 8rem;
+    }
+    .story-ending h2{
+      margin:0;
+      font-size:clamp(3rem,7vw,7rem);
+      line-height:.9;
+      text-transform:uppercase;
+      font-weight:900;
+      letter-spacing:.03em;
+    }
+    .story-ending p{
+      max-width:760px;
+      margin:2rem auto 0;
+      font-size:1.12rem;
+      line-height:2;
+      color:rgba(0,0,0,.72);
+    }
+
     .projects-placeholder{
       min-height: 80vh;
       display: grid;
       place-items: center;
       padding: 2rem 1.5rem;
     }
-
     .projects-placeholder .box{
       max-width: 720px;
       text-align: center;
     }
-
     .projects-placeholder h2{
       font-size: clamp(2.5rem, 6vw, 5rem);
       line-height: .95;
@@ -547,7 +633,6 @@
       letter-spacing: .05em;
       text-transform: uppercase;
     }
-
     .projects-placeholder p{
       max-width: 40rem;
       margin: 0 auto;
@@ -555,31 +640,34 @@
       opacity: .72;
     }
 
-    /* =========================
-       RESPONSIVE / ACCESSIBILITY
-    ========================== */
     @media (max-width: 1024px){
       .skill-card{
         grid-template-columns: 1fr;
         height: min(84vh, 760px);
       }
-
       .card-right{
         min-height: 38vh;
+        margin-left: 0;
       }
-
-      .programmer-art{
-        font-size: clamp(5rem, 20vw, 12rem);
+      .visual-panel{
+        width: 100%;
+        height: 100%;
       }
-
-      .founder-art .circle,
-      .film-art .camera{
-        width: min(46%, 260px);
-      }
-
       .visual-panel .art-image{
         -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,.12) 0%, rgba(0,0,0,.85) 22%, rgba(0,0,0,1) 42%);
         mask-image: linear-gradient(to right, rgba(0,0,0,.12) 0%, rgba(0,0,0,.85) 22%, rgba(0,0,0,1) 42%);
+      }
+      .story-intro{ grid-template-columns:1fr; }
+      .chapter-grid{ grid-template-columns:1fr; }
+      .chapter-sticky{
+        position:relative;
+        top:auto;
+        padding-right:0;
+        margin-bottom: 2rem;
+      }
+      .story-chapter{
+        min-height:auto;
+        padding-bottom: 8rem;
       }
     }
 
@@ -593,52 +681,25 @@
         --raihan-load-x: -110px;
         --shiras-load-x: 110px;
       }
-
-      .hero-sticky{
-        padding: 1.2rem 1rem;
-      }
-
+      .hero-sticky{ padding: 1.2rem 1rem; }
       .foreground-overlay{
         inset: 2%;
         background-position: center center;
         animation: none;
       }
-
-      .horizontal-pin{
-        padding: 1rem;
-      }
-
-      .horizontal-shell{
-        height: 330vh;
-      }
-
+      .horizontal-pin{ padding: 1rem; }
+      .horizontal-shell{ height: 330vh; }
       .skill-card{
         width: 88vw;
         height: 84vh;
       }
-
-      .card-left{
-        padding: 1.1rem;
-      }
-
-      .card-title{
-        font-size: clamp(2.2rem, 11vw, 4rem);
-      }
-
-      .card-copy{
-        font-size: 1rem;
-      }
-
-      .section-footer{
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: .9rem 1.2rem;
-      }
-
-      .section-header{
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
+      .card-left{ padding: 1.1rem; }
+      .card-title{ font-size: clamp(2.2rem, 11vw, 4rem); }
+      .card-copy{ font-size: 1rem; }
+      .intro-big{ font-size: clamp(2.8rem, 12vw, 4.8rem); }
+      .capabilities-grid{ grid-template-columns:1fr; }
+      .story-metrics{ grid-template-columns:1fr; }
+      .story-quote{ font-size: clamp(1.8rem, 8vw, 2.8rem); }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -653,148 +714,10 @@
         animation: none !important;
       }
     }
-
-/* ========================================================== EDITORIAL
-STORY SECTION ==========================================================
-*/
-
-.editorial-story{ width:min(1500px,92vw); margin:0 auto; padding:12rem 0
-10rem; color:var(--ink); }
-
-.story-block{ position:relative; padding:10rem 0 12rem;
-border-bottom:1px solid rgba(0,0,0,.08); }
-.story-block:last-of-type{border-bottom:none;}
-
-.story-number{ position:absolute; top:2rem; left:0;
-font-size:clamp(7rem,14vw,14rem); font-weight:900;
-color:rgba(0,0,0,.045); line-height:.8; user-select:none;
-pointer-events:none; }
-
-.story-header{position:relative;z-index:2;margin-bottom:5rem;}
-
-.story-label{ margin:0 0 1.2rem; font-size:.8rem; letter-spacing:.45em;
-text-transform:uppercase; color:rgba(0,0,0,.45); }
-
-.story-title{ margin:0; font-size:clamp(3.5rem,8vw,8rem);
-line-height:.88; letter-spacing:.03em; text-transform:uppercase;
-font-weight:900; max-width:10ch; }
-
-.story-content{ max-width:820px; margin:0 auto 6rem; }
-
-.story-content p{ font-size:clamp(1.05rem,1.2vw,1.2rem); line-height:2;
-color:rgba(0,0,0,.76); margin:0 0 2rem; }
-
-.story-content strong{color:var(--ink);}
-
-.story-image{ margin:6rem auto; overflow:hidden; border-radius:30px; }
-
-.story-image.large{max-width:100%;}
-
-.story-image img{ width:100%; height:auto; display:block;
-border-radius:30px; transition:transform .8s ease; }
-
-.story-image:hover img{transform:scale(1.03);}
-
-.story-list{ max-width:820px; margin:5rem auto; }
-
-.story-list h3{ margin:0 0 2rem; font-size:.8rem; letter-spacing:.45em;
-text-transform:uppercase; color:rgba(0,0,0,.5); }
-
-.story-list ul{ list-style:none; padding:0; margin:0; display:grid;
-grid-template-columns:repeat(2,minmax(220px,1fr)); gap:1rem 3rem; }
-
-.story-list li{ padding:.35rem 0; font-size:1.05rem; border-bottom:1px
-solid rgba(0,0,0,.08); }
-
-.story-quote{ max-width:900px; margin:8rem auto 0; text-align:center;
-font-size:clamp(2rem,4vw,4rem); line-height:1.2; font-weight:300;
-font-style:italic; color:rgba(0,0,0,.9); }
-
-.story-ending{ padding:14rem 0 8rem; text-align:center; }
-
-.ending-label{ margin:0 0 1rem; font-size:.8rem; letter-spacing:.45em;
-text-transform:uppercase; color:rgba(0,0,0,.45); }
-
-.story-ending h2{ margin:0; font-size:clamp(3rem,7vw,7rem);
-line-height:.9; text-transform:uppercase; font-weight:900; }
-
-.story-ending p{ max-width:760px; margin:2rem auto 0; font-size:1.15rem;
-line-height:2; color:rgba(0,0,0,.72); }
-
-@media (max-width:900px){
-.editorial-story{width:min(94vw,760px);padding:8rem 0;}
-.story-block{padding:7rem 0;} .story-number{font-size:5rem;}
-.story-title{font-size:clamp(2.5rem,10vw,4.5rem);}
-.story-content{margin-bottom:4rem;} .story-list
-ul{grid-template-columns:1fr;}
-.story-quote{font-size:clamp(1.6rem,7vw,2.6rem);} }
-
-
-    /* =========================
-   INTRO HEADING
-========================== */
-
-.intro-heading {
-    max-width: 1400px;
-    margin: 0 auto;
-
-    /* keep large space from hero */
-    padding: 18rem 4vw 2.5rem;
-
-    padding-left: 2.3rem; /* Change this value as needed */
-}
-
-.intro-kicker{
-
-    font-size:.75rem;
-
-    letter-spacing:.45em;
-
-    text-transform:uppercase;
-
-    opacity:.45;
-
-    margin:0 0 1.2rem;
-
-}
-
-.intro-title{
-
-    font-size:clamp(3rem,7vw,7rem);
-
-    font-weight:900;
-
-    line-height:.8;
-
-    letter-spacing:.04em;
-
-    text-transform:uppercase;
-
-    margin:0;
-
-}
-
-.intro-subtitle{
-
-    margin-top:1.8rem;
-
-    font-size:1.15rem;
-
-    line-height:1.8;
-
-    color:rgba(0,0,0,.62);
-
-    max-width:32rem;
-
-}
-
   </style>
 </head>
 <body>
 
-  <!-- =========================
-       HERO SECTION
-  ========================== -->
   <section class="hero-outer" id="heroOuter">
     <div class="hero-sticky">
       <div class="ambient-glow"></div>
@@ -818,20 +741,10 @@ ul{grid-template-columns:1fr;}
     </div>
   </section>
 
-  <!-- =========================
-       HORIZONTAL SKILLS SECTION
-  ========================== -->
-
   <section class="intro-heading">
-    <h2 class="intro-title">
-        Beyond the Screen
-    </h2>
-
-    <p class="intro-subtitle">
-        Tech. Business. Story.
-    </p>
-
-</section>
+    <h2 class="intro-title">Beyond the Screen</h2>
+    <p class="intro-subtitle">Tech. Business. Story.</p>
+  </section>
 
   <section class="horizontal-shell" id="skillsShell">
     <div class="horizontal-pin">
@@ -846,393 +759,215 @@ ul{grid-template-columns:1fr;}
 
         <div class="track-viewport">
           <div class="track" id="skillTrack">
+            <article class="skill-card" data-card="0">
+              <div class="card-left">
+                <div>
+                  <p class="card-kicker">Developer</p>
+                  <h2 class="card-title">Building Things That Matters.</h2>
+                  <p class="card-copy">
+                    I design and develop web applications that balance performance, usability, and thoughtful architecture—from the first idea to deployment.
+                  </p>
+                </div>
+                <a href="#projects" class="cta">Explore projects <span class="arrow"></span></a>
+              </div>
+              <div class="card-right">
+                <div class="visual-panel">
+                  <img class="art-image" src="assets/skills/1.jpeg" alt="Programming still life">
+                </div>
+              </div>
+            </article>
 
-<!-- CARD 1: PROGRAMMING -->
-<article class="skill-card" data-card="0">
+            <article class="skill-card" data-card="1">
+              <div class="card-left">
+                <div>
+                  <p class="card-kicker">Founder</p>
+                  <h2 class="card-title">FROM NOTHING TO SOMETHING.</h2>
+                  <p class="card-copy">
+                    I see ideas everywhere. Most stay as conversations. Mine become experiments, products, and sometimes companies.
+                  </p>
+                </div>
+                <a href="#projects" class="cta">See business side <span class="arrow"></span></a>
+              </div>
+              <div class="card-right">
+                <div class="visual-panel">
+                  <img class="art-image" src="assets/skills/2.jpeg" alt="Founder still life">
+                </div>
+              </div>
+            </article>
 
-    <div class="card-left">
-        <div>
-
-            <p class="card-kicker">Developer</p>
-
-            <h2 class="card-title">
-                Building Things That Matters.
-            </h2>
-
-            <p class="card-copy">
-                I design and develop web applications that balance
-                performance, usability, and thoughtful architecture—
-                from the first idea to deployment.
-            </p>
-
-        </div>
-
-        <a href="#projects" class="cta">
-            Explore projects
-            <span class="arrow"></span>
-        </a>
-
-    </div>
-
-    <div class="card-right">
-
-        <div class="visual-panel">
-
-            <img
-                class="art-image"
-                src="assets/skills/1.jpeg"
-                alt="Programming still life"
-            >
-
-        </div>
-
-    </div>
-
-</article>
-
-
-
-<!-- CARD 2: FOUNDER -->
-<article class="skill-card" data-card="1">
-
-    <div class="card-left">
-
-        <div>
-
-            <p class="card-kicker">Founder</p>
-
-            <h2 class="card-title">
-                FROM
-                NOTHING
-                TO SOMETHING.
-            </h2>
-
-            <p class="card-copy">
-                I see ideas everywhere. Most stay as conversations. Mine become experiments, products, and sometimes companies.
-            </p>
-
-        </div>
-
-        <a href="#projects" class="cta">
-            See business side
-            <span class="arrow"></span>
-        </a>
-
-    </div>
-
-    <div class="card-right">
-
-        <div class="visual-panel">
-
-            <img
-                class="art-image"
-                src="assets/skills/2.jpeg"
-                alt="Founder still life"
-            >
-
-        </div>
-
-    </div>
-
-</article>
-
-
-
-<!-- CARD 3: FILMMAKING -->
-<article class="skill-card" data-card="2">
-
-    <div class="card-left">
-
-        <div>
-
-            <p class="card-kicker">Visual Storyteller</p>
-
-            <h2 class="card-title">
-                STORIES
-                THAT
-                STAY.
-            </h2>
-
-            <p class="card-copy">
-                I love exploring different creative mediums—from editing and cinematography to posters and digital design. Each project is another way to tell a story.
-            </p>
-
-        </div>
-
-        <a href="#projects" class="cta">
-            View visual work
-            <span class="arrow"></span>
-        </a>
-
-    </div>
-
-    <div class="card-right">
-
-        <div class="visual-panel">
-
-            <img
-                class="art-image"
-                src="assets/skills/3.jpeg"
-                alt="Filmmaking still life"
-            >
-
-        </div>
-
-    </div>
-
-</article>
-
+            <article class="skill-card" data-card="2">
+              <div class="card-left">
+                <div>
+                  <p class="card-kicker">Visual Storyteller</p>
+                  <h2 class="card-title">STORIES THAT STAY.</h2>
+                  <p class="card-copy">
+                    I love exploring different creative mediums—from editing and cinematography to posters and digital design. Each project is another way to tell a story.
+                  </p>
+                </div>
+                <a href="#projects" class="cta">View visual work <span class="arrow"></span></a>
+              </div>
+              <div class="card-right">
+                <div class="visual-panel">
+                  <img class="art-image" src="assets/skills/3.jpeg" alt="Filmmaking still life">
+                </div>
+              </div>
+            </article>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
 
-
-
-  <!-- ==========================================================
-    SKILLS DETAILED STORY
-=========================================================== -->
 <section class="editorial-story" id="editorialStory">
+  <div class="story-intro">
+    <div>
+      <p class="intro-eyebrow">About / Story</p>
+      <h2 class="intro-big">Three Faces. One identity.</h2>
+    </div>
+    <p class="intro-copy">
+      Three disciplines. One mindset—building useful web experiences, shaping early-stage ideas, and creating stories that leave a lasting impression.
+    </p>
+  </div>
 
-    <!-- ======================================================
-         DEVELOPER
-    ======================================================= -->
-    <section class="story-block" id="developer">
-
-        <div class="story-number">01</div>
-
-        <div class="story-header">
-
-            <p class="story-label">
-                DEVELOPER
-            </p>
-
-            <h2 class="story-title">
-                Turning<br>
-                Ideas Into<br>
-                Reality
-            </h2>
-
+  <div class="story-stack">
+    <section class="story-chapter" id="developer">
+      <div class="story-bg-word">BUILD</div>
+      <div class="chapter-grid">
+        <div class="chapter-sticky">
+          <p class="chapter-num">01</p>
+          <p class="chapter-label">Developer</p>
+          <h2 class="chapter-title">Turning Ideas Into Reality</h2>
+          <div class="chapter-rule"></div>
+          <p class="chapter-kicker">
+            Software is most exciting when it becomes useful. I like building things that feel clear, fast, and dependable.
+          </p>
         </div>
-
-        <div class="story-content">
-
-            <p>
-                Software has always fascinated me because it transforms imagination into something tangible. A simple idea can become a tool that saves time, solves problems, or changes how people interact with the world.
-            </p>
-
-            <p>
-                For me, programming isn't just about writing code—it's about understanding problems. Every project begins by asking <strong>why</strong> before deciding <strong>how</strong>. Whether I'm building a client portal, a management system, or experimenting with a new product, I focus on creating solutions that are reliable, intuitive, and built to last.
-            </p>
-
-            <p>
-                I'm constantly learning, refining my approach, and exploring better ways to architect software. Every bug teaches patience. Every project teaches perspective. Every line of code is another step toward becoming a better builder.
-            </p>
-
+        <div class="chapter-body">
+          <p class="chapter-paragraph">
+            I got into development because I was curious about how digital products actually work. What started as exploring code slowly became a way of thinking—one where problems can be broken down, designed carefully, and turned into something real.
+          </p>
+          <p class="chapter-paragraph">
+            For me, programming is not just about writing code. It is about understanding what needs to be solved. Every project starts by asking <strong>why</strong> before deciding <strong>how</strong>. Whether I am building a client portal, a business website, or experimenting with a new product idea, I focus on making it reliable, intuitive, and easy to use.
+          </p>
+          <p class="chapter-paragraph">
+            I am constantly learning, refining my process, and exploring better ways to build software. Every bug teaches patience. Every project teaches perspective. Every line of code becomes part of the journey toward becoming a stronger builder.
+          </p>
+          <div class="capabilities-grid">
+            <div class="capability"><span>Focus</span><strong>Full-stack systems with strong UX</strong></div>
+            <div class="capability"><span>Priority</span><strong>Performance, structure, and clarity</strong></div>
+            <div class="capability"><span>Build Style</span><strong>Clean architecture, practical decisions</strong></div>
+            <div class="capability"><span>Mindset</span><strong>Make it work, then make it elegant</strong></div>
+          </div>
+          <blockquote class="story-quote">Every line of code is another step toward becoming a better builder.</blockquote>
+          <div class="story-metrics">
+            <div class="metric"><span class="value" data-count="40">0</span><span class="label">Projects</span></div>
+            <div class="metric"><span class="value" data-count="1000">0</span><span class="label">Hours Learned</span></div>
+            <div class="metric"><span class="value" data-count="6">0</span><span class="label">Core Skills</span></div>
+          </div>
         </div>
-
-
-        <div class="story-list">
-
-            <h3>What I Enjoy</h3>
-
-            <ul>
-
-                <li>Full-Stack Development</li>
-                <li>System Architecture</li>
-                <li>Backend Development</li>
-                <li>UI & Interaction Design</li>
-                <li>Performance Optimization</li>
-                <li>Product Development</li>
-
-            </ul>
-
-        </div>
-
-        <blockquote class="story-quote">
-
-            Every line of code is another step toward becoming a better builder.
-
-        </blockquote>
-
+      </div>
     </section>
 
-
-
-    <!-- ======================================================
-         FOUNDER
-    ======================================================= -->
-
-    <section class="story-block" id="founder">
-
-        <div class="story-number">02</div>
-
-        <div class="story-header">
-
-            <p class="story-label">
-                FOUNDER
-            </p>
-
-            <h2 class="story-title">
-                Building<br>
-                More Than<br>
-                Products
-            </h2>
-
+    <section class="story-chapter" id="founder">
+      <div class="story-bg-word">THINK</div>
+      <div class="chapter-grid">
+        <div class="chapter-sticky">
+          <p class="chapter-num">02</p>
+          <p class="chapter-label">Founder</p>
+          <h2 class="chapter-title">Building Elevated Web Solutions</h2>
+          <div class="chapter-rule"></div>
+          <p class="chapter-kicker">
+            I enjoy finding opportunities, shaping ideas, and turning uncertainty into progress.
+          </p>
         </div>
-
-        <div class="story-content">
-
-            <p>
-                I've always been drawn to creating things from scratch. Not because it's easy, but because there's something exciting about taking an idea that exists only in your mind and turning it into something real.
-            </p>
-
-            <p>
-                Being a founder has taught me that technology is only one part of building something meaningful. Great products begin with understanding people—their frustrations, their needs, and the opportunities hidden in everyday problems.
-            </p>
-
-            <p>
-                I'm fascinated by startups because they combine creativity, strategy, design, engineering, and resilience into a single journey. Whether an idea succeeds or fails, every experiment adds another lesson that shapes the next one.
-            </p>
-
-            <p>
-                For me, entrepreneurship isn't defined by launching companies. It's defined by the willingness to take ownership, embrace uncertainty, and keep building.
-            </p>
-
+        <div class="chapter-body">
+          <p class="chapter-paragraph">
+            Elevated Web Solutions came from a simple belief: every business deserves a digital presence that feels modern, professional, and built with care. I wanted to create something that helps people turn ideas into something visible and valuable online.
+          </p>
+          <p class="chapter-paragraph">
+            Working on this brand has taught me that building something meaningful is not just about code. It is about understanding people, listening to what they need, and translating that into a product or website that makes sense for their goals.
+          </p>
+          <p class="chapter-paragraph">
+            I am fascinated by the process of turning small ideas into real offerings. Whether I am shaping a service, thinking through a client problem, or refining how the brand communicates itself, I enjoy the challenge of making something that feels intentional and useful.
+          </p>
+          <p class="chapter-paragraph">
+            For me, entrepreneurship is not about sounding bigger than I am. It is about taking ownership, learning fast, and building steadily—one project, one client, and one improvement at a time.
+          </p>
+          <div class="capabilities-grid">
+            <div class="capability"><span>Focus</span><strong>Startup thinking and product strategy</strong></div>
+            <div class="capability"><span>Priority</span><strong>Clarity in problem discovery</strong></div>
+            <div class="capability"><span>Build Style</span><strong>Experiment, iterate, validate, improve</strong></div>
+            <div class="capability"><span>Mindset</span><strong>Own the outcome, not just the task</strong></div>
+          </div>
+          <blockquote class="story-quote">Ownership begins where certainty ends.</blockquote>
+          <div class="story-metrics">
+            <div class="metric"><span class="value" data-count="12">0</span><span class="label">Ideas Tested</span></div>
+            <div class="metric"><span class="value" data-count="8">0</span><span class="label">Business Lessons</span></div>
+            <div class="metric"><span class="value" data-count="100">0</span><span class="label">Percent Curiosity</span></div>
+          </div>
         </div>
-
-        <div class="story-list">
-
-            <h3>What Drives Me</h3>
-
-            <ul>
-
-                <li>Startup Building</li>
-                <li>Product Strategy</li>
-                <li>Opportunity Discovery</li>
-                <li>Business Thinking</li>
-                <li>Continuous Experimentation</li>
-                <li>Long-Term Vision</li>
-
-            </ul>
-
-        </div>
-
-        <blockquote class="story-quote">
-
-            Ownership begins where certainty ends.
-
-        </blockquote>
-
+      </div>
     </section>
 
-
-
-    <!-- ======================================================
-         CREATIVE
-    ======================================================= -->
-
-    <section class="story-block" id="creative">
-
-        <div class="story-number">03</div>
-
-        <div class="story-header">
-
-            <p class="story-label">
-                CREATIVE
-            </p>
-
-            <h2 class="story-title">
-                Stories<br>
-                Beyond<br>
-                The Screen
-            </h2>
-
+    <section class="story-chapter" id="creative">
+      <div class="story-bg-word">CREATE</div>
+      <div class="chapter-grid">
+        <div class="chapter-sticky">
+          <p class="chapter-num">03</p>
+          <p class="chapter-label">Creative</p>
+          <h2 class="chapter-title">Stories Beyond The Screen</h2>
+          <div class="chapter-rule"></div>
+          <p class="chapter-kicker">
+            Visual storytelling matters because people remember feeling before they remember details.
+          </p>
         </div>
-
-        <div class="story-content">
-
-            <p>
-                Some ideas are easier to feel than explain.
-            </p>
-
-            <p>
-                That's what drew me toward visual storytelling.
-            </p>
-
-            <p>
-                Whether I'm editing a cinematic reel, designing a poster, capturing footage, or experimenting with motion graphics, I enjoy creating visuals that leave an impression. Every project is an opportunity to communicate emotion, atmosphere, and personality without relying solely on words.
-            </p>
-
-            <p>
-                I don't see creativity as separate from technology—it complements it. The same attention to detail that shapes a good edit also shapes a great user experience. Every frame, transition, composition, and color choice contributes to the overall story.
-            </p>
-
-            <p>
-                For me, creativity isn't about making things look beautiful. It's about making people feel something.
-            </p>
-
+        <div class="chapter-body">
+          <p class="chapter-paragraph">
+            Some ideas are easier to feel than explain. That is what drew me toward visual storytelling in the first place.
+          </p>
+          <p class="chapter-paragraph">
+            Whether I am designing a poster, editing a reel, creating motion experiments, or shaping a digital composition, I enjoy building visuals that carry personality and leave an impression. Every project is a chance to communicate emotion, atmosphere, and meaning without relying only on words.
+          </p>
+          <p class="chapter-paragraph">
+            I do not see creativity as separate from technology. It complements it. The same attention to detail that improves a good edit also improves a strong user experience. Every frame, transition, layout choice, and color decision contributes to the final story.
+          </p>
+          <p class="chapter-paragraph">
+            For me, creativity is not about making things look beautiful just for the sake of it. It is about making people feel something and remember it.
+          </p>
+          <div class="capabilities-grid">
+            <div class="capability"><span>Focus</span><strong>Editing, motion, and composition</strong></div>
+            <div class="capability"><span>Priority</span><strong>Emotion, rhythm, and atmosphere</strong></div>
+            <div class="capability"><span>Build Style</span><strong>Minimal visuals with maximum presence</strong></div>
+            <div class="capability"><span>Mindset</span><strong>Story first, style second</strong></div>
+          </div>
+          <blockquote class="story-quote">People remember how something made them feel.</blockquote>
+          <div class="story-metrics">
+            <div class="metric"><span class="value" data-count="24">0</span><span class="label">Visual Experiments</span></div>
+            <div class="metric"><span class="value" data-count="15">0</span><span class="label">Creative Tools</span></div>
+            <div class="metric"><span class="value" data-count="3">0</span><span class="label">Core Mediums</span></div>
+          </div>
         </div>
-
-        <div class="story-list">
-
-            <h3>Creative Interests</h3>
-
-            <ul>
-
-                <li>Video Editing</li>
-                <li>Videography</li>
-                <li>Poster Design</li>
-                <li>Creative Direction</li>
-                <li>Motion Graphics</li>
-                <li>Visual Storytelling</li>
-
-            </ul>
-
-        </div>
-
-        <blockquote class="story-quote">
-
-            People remember how something made them feel.
-
-        </blockquote>
-
+      </div>
     </section>
+  </div>
 
-
-
-    <!-- ======================================================
-         CLOSING
-    ======================================================= -->
-
-    <section class="story-ending">
-
-
-        <h2>
-            Different Paths.<br>
-            One Purpose.
-        </h2>
-
-        <p>
-            Engineering teaches me how to build.
-            Entrepreneurship teaches me what to build.
-            Creativity teaches me how to make people care.
-        </p>
-
-        <p>
-            Together, they shape the way I approach every challenge—combining logic, curiosity, and storytelling to create experiences that are both meaningful and memorable.
-        </p>
-
-    </section>
-
+  <section class="story-ending">
+    <h2>
+      Different Paths.<br>
+      One Purpose.
+    </h2>
+    <p>
+      Engineering teaches me how to build. Entrepreneurship teaches me what to build. Creativity teaches me how to make people care.
+    </p>
+    <p>
+      Together, they shape the way I approach every challenge—combining logic, curiosity, and storytelling to create experiences that are both meaningful and memorable.
+    </p>
+  </section>
 </section>
 
-  <!-- =========================
-       NEXT SECTION PLACEHOLDER
-  ========================== -->
+
+
   <section id="projects" class="projects-placeholder">
     <div class="box">
       <p class="micro-label" style="opacity:.5;">Projects</p>
@@ -1243,9 +978,6 @@ ul{grid-template-columns:1fr;}
     </div>
   </section>
 
-  <!-- =========================
-       SCRIPT / INTERACTION
-  ========================== -->
   <script>
     (function () {
       const root = document.documentElement;
@@ -1293,7 +1025,6 @@ ul{grid-template-columns:1fr;}
         const totalTrackWidth = (cardWidth * cards.length) + (gap * (cards.length - 1)) + paddingLeft + paddingRight;
         maxTrackX = Math.max(0, totalTrackWidth - window.innerWidth);
 
-        // Add breathing room before and after the pinned section.
         const topGap = window.innerHeight * 0.12;
         const bottomGap = window.innerHeight * 0.10;
 
@@ -1390,97 +1121,95 @@ ul{grid-template-columns:1fr;}
       }, { passive: true });
     })();
 
+    (function () {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+      gsap.registerPlugin(ScrollTrigger);
 
+      const chapters = document.querySelectorAll(".story-chapter");
 
+      chapters.forEach((chapter) => {
+        const rule = chapter.querySelector(".chapter-rule");
+        const bgWord = chapter.querySelector(".story-bg-word");
+        const label = chapter.querySelector(".chapter-label");
+        const title = chapter.querySelector(".chapter-title");
+        const kicker = chapter.querySelector(".chapter-kicker");
+        const paragraphs = chapter.querySelectorAll(".chapter-paragraph");
+        const capabilities = chapter.querySelectorAll(".capability");
+        const quote = chapter.querySelector(".story-quote");
+        const metrics = chapter.querySelectorAll(".metric");
+        const metricValues = chapter.querySelectorAll(".metric .value");
 
-
-
-    /* ========================================================== EDITORIAL
-STORY INTERACTIONS Lightweight Apple-style reveal animations
-========================================================== */
-
-(() => {
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (prefersReduced) return;
-
-  const blocks = document.querySelectorAll(".story-block");
-  const images = document.querySelectorAll(".story-image img");
-  const quotes = document.querySelectorAll(".story-quote");
-
-  // Initial states
-  blocks.forEach((block) => {
-    const header = block.querySelector(".story-header");
-    const content = block.querySelector(".story-content");
-    const list = block.querySelector(".story-list");
-    const image = block.querySelector(".story-image");
-    const quote = block.querySelector(".story-quote");
-
-    [header, content, list, image, quote].forEach((el) => {
-      if (!el) return;
-      el.style.opacity = "0";
-      el.style.transform = "translateY(40px)";
-      el.style.transition =
-        "opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1)";
-      el.style.willChange = "opacity, transform";
-    });
-  });
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        const block = entry.target;
-        const header = block.querySelector(".story-header");
-        const content = block.querySelector(".story-content");
-        const image = block.querySelector(".story-image");
-        const list = block.querySelector(".story-list");
-        const quote = block.querySelector(".story-quote");
-
-        const sequence = [header, content, image, list, quote];
-
-        sequence.forEach((el, i) => {
-          if (!el) return;
-          setTimeout(() => {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-          }, i * 180);
+        gsap.set([label, title, kicker, rule, paragraphs, capabilities, quote, metrics], {
+          autoAlpha: 0,
+          y: 40
+        });
+        gsap.set(bgWord, {
+          autoAlpha: 0,
+          scale: 1.15,
+          y: 100
         });
 
-        observer.unobserve(block);
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: chapter,
+            start: "top 98%",
+            end: "bottom 35%",
+            scrub: 0.7
+          }
+        });
+
+        tl.to(bgWord, { autoAlpha: 0.12, y: 0, scale: 1, ease: "none", duration: 1 }, 0);
+        tl.to(label, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.08);
+        tl.to(title, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.12);
+        tl.to(rule, { autoAlpha: 1, scaleX: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.18);
+        tl.to(kicker, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.22);
+        tl.to(paragraphs, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.5, ease: "power3.out" }, 0.28);
+        tl.to(capabilities, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.35, ease: "power3.out" }, 0.45);
+        tl.to(quote, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.56);
+        tl.to(metrics, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.35, ease: "power3.out" }, 0.67);
+
+        metricValues.forEach((el) => {
+          const endValue = parseInt(el.dataset.count || "0", 10);
+          const obj = { val: 0 };
+          ScrollTrigger.create({
+            trigger: chapter,
+            start: "top 65%",
+            once: true,
+            onEnter: () => {
+              gsap.to(obj, {
+                val: endValue,
+                duration: 1.2,
+                ease: "power2.out",
+                onUpdate: () => {
+                  el.textContent = Math.round(obj.val);
+                }
+              });
+            }
+          });
+        });
       });
-    },
-    { threshold: 0.22 }
-  );
 
-  blocks.forEach((block) => observer.observe(block));
-
-  // Gentle image parallax + quote fade
-  window.addEventListener(
-    "scroll",
-    () => {
-      const viewport = window.innerHeight;
-
-      images.forEach((img) => {
-        const rect = img.getBoundingClientRect();
-        const progress = (rect.top + rect.height * 0.5 - viewport * 0.5) / viewport;
-        const translate = progress * -30;
-        const scale = 1.05 - Math.abs(progress) * 0.04;
-
-        img.style.transform = `translateY(${translate}px) scale(${Math.max(scale, 0.98)})`;
-      });
-
-      quotes.forEach((q) => {
-        const rect = q.getBoundingClientRect();
-        const visible = 1 - Math.min(Math.abs(rect.top - viewport * 0.5) / viewport, 1);
-        q.style.opacity = (0.35 + visible * 0.65).toFixed(2);
-      });
-    },
-    { passive: true }
-  );
-})();
-
-</script>
+      const ending = document.querySelector(".story-ending");
+      if (ending) {
+        gsap.fromTo(
+          ending.querySelectorAll("h2, p"),
+          { autoAlpha: 0, y: 30 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.12,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: ending,
+              start: "top 80%"
+            }
+          }
+        );
+      }
+    })();
+  </script>
 </body>
 </html>
