@@ -767,22 +767,25 @@
       line-height: 1.7;
       color: rgba(0,0,0,.72);
     }
-    .works-gallery{
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      gap: clamp(2.1rem, 5vh, 3.4rem);
-      opacity: 0;
-      transform: translateY(26px);
-      will-change: transform, opacity;
-      padding:
-        clamp(8.5rem, 16vh, 10rem)
-        clamp(1rem, 2.2vw, 2rem)
-        clamp(4.5rem, 8vh, 6rem);
-      z-index: 6;
-    }
+   .works-gallery{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(2.1rem, 5vh, 3.4rem);
+
+  /* Move everything upward */
+  padding:
+    clamp(6.8rem, 13vh, 8rem)   /* was 8.5rem / 16vh / 10rem */
+    clamp(1rem, 2.2vw, 2rem)
+    clamp(7rem, 12vh, 9rem);    /* increase bottom padding */
+
+  opacity: 0;
+  transform: translateY(26px);
+  will-change: transform, opacity;
+  z-index: 6;
+}
     .gallery-block{
       display: grid;
       gap: .7rem;
@@ -992,7 +995,6 @@
         animation: none !important;
       }
     }
-
   </style>
 </head>
 <body>
@@ -1268,10 +1270,6 @@
 
           <div class="works-gallery" id="worksGallery">
             <section class="gallery-block">
-              <div class="gallery-head">
-                <span>Websites</span>
-                <span class="gallery-hint">Scroll pulls this row to the left.</span>
-              </div>
               <div class="track-viewport" id="webViewport">
                 <div class="project-track" id="webTrack">
                   <article class="project-card">
@@ -1348,10 +1346,6 @@
             </section>
 
             <section class="gallery-block">
-              <div class="gallery-head">
-                <span>Posters & Videos</span>
-                <span class="gallery-hint">Scroll pulls this row to the right.</span>
-              </div>
               <div class="track-viewport" id="mediaViewport">
                 <div class="project-track" id="mediaTrack">
                   <article class="project-card">
@@ -1596,12 +1590,12 @@
 
         gsap.set([label, title, kicker, rule, paragraphs, capabilities, quote, metrics], {
           autoAlpha: 0,
-          y: 40
+          y: -14
         });
         gsap.set(bgWord, {
           autoAlpha: 0,
           scale: 1.15,
-          y: 100
+          y: -40
         });
 
         const tl = gsap.timeline({
@@ -1962,8 +1956,8 @@
   );
 
   tl.fromTo(mediaTrack,
-    { x: 0 },
-    { x: () => mediaDistance, ease: "none", duration: 1.1 },
+    { x: () => -mediaDistance },
+    { x: 0, ease: "none", duration: 1.1 },
     0.88
   );
 
