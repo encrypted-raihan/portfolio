@@ -23,7 +23,7 @@
       --hero-spacing: .08em;
       --hero-line: .86;
 
-      --raihan-x: -80px;
+      --raihan-x: -90px;
       --raihan-y: -125px;
       --shiras-x: 105px;
       --shiras-y: 30px;
@@ -414,7 +414,7 @@
       letter-spacing:.04em;
       text-transform:uppercase;
       font-weight:900;
-      max-width: 10ch;
+      max-width: 12ch;
     }
     .intro-copy{
       margin:0;
@@ -615,91 +615,362 @@
       color:rgba(0,0,0,.72);
     }
 
-    .projects-placeholder{
-      min-height: 80vh;
+    
+
+    
+    .works-portal{
+      position: relative;
+      height: 560vh;
+      margin-top: 4rem;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,.78), transparent 22%),
+        radial-gradient(circle at 50% 88%, rgba(0,0,0,.04), transparent 34%),
+        linear-gradient(180deg, rgba(252,251,248,1), rgba(237,231,222,1) 56%, rgba(223,215,204,1));
+    }
+    .works-portal::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.22), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.10), transparent 18%, transparent 82%, rgba(0,0,0,.05));
+      z-index: 0;
+    }
+    .works-sticky{
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      isolation: isolate;
+      z-index: 1;
+    }
+    .works-stage{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255,255,255,.38), transparent 18%),
+        radial-gradient(circle at 50% 80%, rgba(0,0,0,.03), transparent 30%),
+        linear-gradient(180deg, rgba(245,241,236,1), rgba(235,228,219,1));
+      contain: paint;
+    }
+    .works-sky-wrap{
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       display: grid;
       place-items: center;
-      padding: 2rem 1.5rem;
+      pointer-events: none;
     }
-    .projects-placeholder .box{
-      max-width: 720px;
+    .works-window{
+      position: relative;
+      width: min(44vw, 760px);
+      height: min(58vh, 640px);
+      overflow: hidden;
+      border-radius: 999px;
+      border: 14px solid rgba(255,255,255,.20);
+      box-shadow:
+        0 36px 100px rgba(0,0,0,.18),
+        inset 0 0 0 2px rgba(255,255,255,.28);
+      background: rgba(170, 196, 222, .10);
+      transform-origin: center center;
+      will-change: transform, border-radius, border-width, opacity;
+      backface-visibility: hidden;
+    }
+    .works-window::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.26);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .works-sky{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transform: scale(1);
+      will-change: transform, filter;
+      filter: saturate(1.02) contrast(1.02) brightness(.98);
+      z-index: 1;
+    }
+    .works-sheen{
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.26), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.10), transparent 22%, transparent 72%, rgba(255,255,255,.12));
+      mix-blend-mode: screen;
+      opacity: .78;
+      pointer-events: none;
+    }
+    .works-noise{
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      opacity: .07;
+      background-image:
+        linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.14) 1px, transparent 1px);
+      background-size: 3px 3px, 4px 4px;
+      mix-blend-mode: overlay;
+    }
+    .works-overlay{
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: block;
+      padding: 0;
+      pointer-events: none;
+    }
+    .works-header{
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
       text-align: center;
+      padding: clamp(1rem, 2vw, 1.8rem);
+      max-width: none;
+      opacity: 0;
+      transform: translateY(18px);
+      will-change: transform, opacity;
     }
-    .projects-placeholder h2{
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: .95;
-      margin: .7rem 0 1rem;
-      font-weight: 900;
-      letter-spacing: .05em;
+    .works-eyebrow{
+      margin: 0 0 1rem;
+      font-size: .78rem;
+      letter-spacing: .42em;
       text-transform: uppercase;
+      color: rgba(0,0,0,.52);
     }
-    .projects-placeholder p{
-      max-width: 40rem;
-      margin: 0 auto;
-      line-height: 1.8;
-      opacity: .72;
+    .works-title{
+      margin: 0;
+      font-size: clamp(3.2rem, 7.6vw, 7.4rem);
+      line-height: .88;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-weight: 900;
+      max-width: 11ch;
+      color: rgba(0,0,0,.98);
+    }
+    .works-copy{
+      margin: .95rem auto 0;
+      max-width: 42rem;
+      font-size: clamp(.95rem, 1.05vw, 1.05rem);
+      line-height: 1.7;
+      color: rgba(0,0,0,.72);
+    }
+    .works-gallery{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: clamp(2.1rem, 5vh, 3.4rem);
+      opacity: 0;
+      transform: translateY(26px);
+      will-change: transform, opacity;
+      padding:
+        clamp(8.5rem, 16vh, 10rem)
+        clamp(1rem, 2.2vw, 2rem)
+        clamp(4.5rem, 8vh, 6rem);
+      z-index: 6;
+    }
+    .gallery-block{
+      display: grid;
+      gap: .7rem;
+      flex: 0 0 auto;
+    }
+    .gallery-head{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: rgba(0,0,0,.52);
+      font-size: .78rem;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    .gallery-hint{
+      letter-spacing: .16em;
+      font-size: .68rem;
+      text-transform: none;
+      opacity: .75;
+      white-space: nowrap;
+    }
+    .track-viewport{
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      min-height: 0;
+      pointer-events: none;
+    }
+    .project-track{
+      display: flex;
+      gap: 1.2rem;
+      width: max-content;
+      will-change: transform;
+      transform: translate3d(0,0,0);
+      pointer-events: none;
+    }
+    .project-card{
+      flex: 0 0 auto;
+      width: clamp(240px, 18.5vw, 300px);
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.34);
+      background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(248,244,236,.82));
+      box-shadow: 0 22px 80px rgba(0,0,0,.14);
+      backdrop-filter: blur(18px);
+      position: relative;
+      isolation: isolate;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition: transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s cubic-bezier(.22,1,.36,1), border-color .55s cubic-bezier(.22,1,.36,1);
+    }
+    .project-card::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.22), transparent 24%),
+        linear-gradient(180deg, transparent 62%, rgba(0,0,0,.05) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .project-card:hover{
+      transform: translateY(-10px);
+      border-color: rgba(255,255,255,.58);
+      box-shadow: 0 28px 90px rgba(0,0,0,.18);
+    }
+    .project-visual{
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: rgba(255,255,255,.2);
+    }
+    .project-visual::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), transparent 45%, rgba(0,0,0,.22));
+      z-index: 2;
+      pointer-events: none;
+    }
+    .project-visual img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform .65s cubic-bezier(.22,1,.36,1);
+      display: block;
+    }
+    .project-card:hover .project-visual img{
+      transform: scale(1.07);
+    }
+    .project-body{
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .9rem;
+      align-items: end;
+      padding: 1rem 1rem 1.05rem;
+    }
+    .project-tag{
+      margin: 0 0 .45rem;
+      font-size: .66rem;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.44);
+    }
+    .project-name{
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: rgba(0,0,0,.92);
+    }
+    .project-meta{
+      margin: .38rem 0 0;
+      font-size: .8rem;
+      line-height: 1.5;
+      color: rgba(0,0,0,.60);
+      max-width: 16ch;
+    }
+    .project-arrow{
+      font-size: 1.15rem;
+      line-height: 1;
+      color: rgba(0,0,0,.8);
+      flex: none;
+      transform: translateY(-2px);
+      align-self: end;
     }
 
-    @media (max-width: 1024px){
-      .skill-card{
-        grid-template-columns: 1fr;
-        height: min(84vh, 760px);
+    .works-gallery .gallery-block:last-child{
+      margin-top: .35rem;
+    }
+
+    @media (max-width: 1100px){
+      .works-window{
+        width: min(74vw, 680px);
+        height: min(50vh, 560px);
+        border-width: 12px;
       }
-      .card-right{
-        min-height: 38vh;
-        margin-left: 0;
+      .works-title{
+        font-size: clamp(2.4rem, 5.8vw, 5rem);
       }
-      .visual-panel{
-        width: 100%;
-        height: 100%;
+      .project-card{
+        width: clamp(220px, 30vw, 280px);
       }
-      .visual-panel .art-image{
-        -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,.12) 0%, rgba(0,0,0,.85) 22%, rgba(0,0,0,1) 42%);
-        mask-image: linear-gradient(to right, rgba(0,0,0,.12) 0%, rgba(0,0,0,.85) 22%, rgba(0,0,0,1) 42%);
-      }
-      .story-intro{ grid-template-columns:1fr; }
-      .chapter-grid{ grid-template-columns:1fr; }
-      .chapter-sticky{
-        position:relative;
-        top:auto;
-        padding-right:0;
-        margin-bottom: 2rem;
-      }
-      .story-chapter{
-        min-height:auto;
-        padding-bottom: 8rem;
+      .works-gallery{
+        padding-top: clamp(7.8rem, 14vh, 8.8rem);
+        padding-bottom: clamp(4rem, 7vh, 5rem);
       }
     }
 
     @media (max-width: 768px){
-      :root{
-        --hero-size: clamp(3.2rem, 14vw, 6rem);
-        --raihan-x: -28px;
-        --raihan-y: -65px;
-        --shiras-x: 18px;
-        --shiras-y: 16px;
-        --raihan-load-x: -110px;
-        --shiras-load-x: 110px;
+      .works-portal{
+        height: 500vh;
+        margin-top: 3rem;
       }
-      .hero-sticky{ padding: 1.2rem 1rem; }
-      .foreground-overlay{
-        inset: 2%;
-        background-position: center center;
-        animation: none;
+      .works-overlay{
+        padding: .85rem;
       }
-      .horizontal-pin{ padding: 1rem; }
-      .horizontal-shell{ height: 330vh; }
-      .skill-card{
-        width: 88vw;
-        height: 84vh;
+      .works-window{
+        width: min(82vw, 460px);
+        height: min(36vh, 330px);
+        border-width: 10px;
       }
-      .card-left{ padding: 1.1rem; }
-      .card-title{ font-size: clamp(2.2rem, 11vw, 4rem); }
-      .card-copy{ font-size: 1rem; }
-      .intro-big{ font-size: clamp(2.8rem, 12vw, 4.8rem); }
-      .capabilities-grid{ grid-template-columns:1fr; }
-      .story-metrics{ grid-template-columns:1fr; }
-      .story-quote{ font-size: clamp(1.8rem, 8vw, 2.8rem); }
+      .works-title{
+        font-size: clamp(2.1rem, 7vw, 3.6rem);
+        max-width: 9ch;
+      }
+      .works-copy{
+        max-width: 100%;
+      }
+      .works-gallery{
+        gap: 1.55rem;
+        padding-top: clamp(5.9rem, 11vh, 7rem);
+        padding-bottom: 1.5rem;
+      }
+      .gallery-head{
+        letter-spacing: .28em;
+      }
+      .gallery-hint{
+        display: none;
+      }
+      .project-card{
+        width: 78vw;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -709,11 +980,19 @@
       .topbar,
       .bottombar,
       .section-shell,
-      .track{
+      .track,
+      .works-window,
+      .works-sky,
+      .works-header,
+      .works-gallery,
+      .project-track,
+      .project-visual img,
+      .project-card{
         transition: none !important;
         animation: none !important;
       }
     }
+
   </style>
 </head>
 <body>
@@ -768,7 +1047,6 @@
                     I design and develop web applications that balance performance, usability, and thoughtful architecture—from the first idea to deployment.
                   </p>
                 </div>
-                <a href="#projects" class="cta">Explore projects <span class="arrow"></span></a>
               </div>
               <div class="card-right">
                 <div class="visual-panel">
@@ -786,7 +1064,7 @@
                     I see ideas everywhere. Most stay as conversations. Mine become experiments, products, and sometimes companies.
                   </p>
                 </div>
-                <a href="#projects" class="cta">See business side <span class="arrow"></span></a>
+        
               </div>
               <div class="card-right">
                 <div class="visual-panel">
@@ -804,7 +1082,7 @@
                     I love exploring different creative mediums—from editing and cinematography to posters and digital design. Each project is another way to tell a story.
                   </p>
                 </div>
-                <a href="#projects" class="cta">View visual work <span class="arrow"></span></a>
+         
               </div>
               <div class="card-right">
                 <div class="visual-panel">
@@ -966,19 +1244,194 @@
   </section>
 </section>
 
+  
+  
+  <section id="projects" class="works-portal">
+    <div class="works-sticky">
+      <div class="works-stage" id="worksStage">
+        <div class="works-sky-wrap">
+          <div class="works-window" id="worksWindow">
+            <img class="works-sky" id="worksSky" src="assets/projects/sky.jpeg" alt="Sky background">
+            <div class="works-sheen"></div>
+            <div class="works-noise"></div>
+          </div>
+        </div>
 
+        <div class="works-overlay">
+          <header class="works-header" id="worksHeader">
+            <p class="works-eyebrow">Selected Work</p>
+            <h2 class="works-title">Crafting Digital Experiences</h2>
+            <p class="works-copy">
+              The sky becomes the stage. The section pauses, then the work scrolls across in two opposite directions—websites above, posters and videos below.
+            </p>
+          </header>
 
-  <section id="projects" class="projects-placeholder">
-    <div class="box">
-      <p class="micro-label" style="opacity:.5;">Projects</p>
-      <h2>Next section</h2>
-      <p>
-        This is where your project grid or case studies can begin after the horizontal story ends.
-      </p>
+          <div class="works-gallery" id="worksGallery">
+            <section class="gallery-block">
+              <div class="gallery-head">
+                <span>Websites</span>
+                <span class="gallery-hint">Scroll pulls this row to the left.</span>
+              </div>
+              <div class="track-viewport" id="webViewport">
+                <div class="project-track" id="webTrack">
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/1.jpeg" alt="Elevated Web Solutions preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Agency Website</p>
+                        <h3 class="project-name">Elevated Web Solutions</h3>
+                        <p class="project-meta">Modern portfolio and client experience</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/2.jpeg" alt="Ironcore Fitness preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Gym Website</p>
+                        <h3 class="project-name">Ironcore Fitness</h3>
+                        <p class="project-meta">Strength brand with clean UI</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/projects/sky.jpeg" alt="Luxury Villas preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Real Estate</p>
+                        <h3 class="project-name">Luxury Villas</h3>
+                        <p class="project-meta">Property showcase and lead capture</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/3.jpeg" alt="ProManage preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">SaaS Platform</p>
+                        <h3 class="project-name">ProManage</h3>
+                        <p class="project-meta">Project management dashboard</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/1.jpeg" alt="Sakura Restaurant preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Restaurant Website</p>
+                        <h3 class="project-name">Sakura Restaurant</h3>
+                        <p class="project-meta">Warm hospitality and premium feel</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <section class="gallery-block">
+              <div class="gallery-head">
+                <span>Posters & Videos</span>
+                <span class="gallery-hint">Scroll pulls this row to the right.</span>
+              </div>
+              <div class="track-viewport" id="mediaViewport">
+                <div class="project-track" id="mediaTrack">
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/2.jpeg" alt="Samurai Spirit poster preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Poster Design</p>
+                        <h3 class="project-name">Samurai Spirit</h3>
+                        <p class="project-meta">Bold composition and contrast</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/projects/sky.jpeg" alt="Beyond Limits video preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Motivational Video</p>
+                        <h3 class="project-name">Beyond Limits</h3>
+                        <p class="project-meta">Atmospheric motion edit</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/1.jpeg" alt="Minimal Collection poster preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Poster Design</p>
+                        <h3 class="project-name">Minimal Collection</h3>
+                        <p class="project-meta">Quiet layout with strong type</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/3.jpeg" alt="Rise Above cinematic video preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Cinematic Video</p>
+                        <h3 class="project-name">Rise Above</h3>
+                        <p class="project-meta">Cloudscape motion piece</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+
+                  <article class="project-card">
+                    <div class="project-visual">
+                      <img src="assets/skills/2.jpeg" alt="Focus Discipline poster preview">
+                    </div>
+                    <div class="project-body">
+                      <div>
+                        <p class="project-tag">Poster Design</p>
+                        <h3 class="project-name">Focus Discipline</h3>
+                        <p class="project-meta">Minimal message, strong presence</p>
+                      </div>
+                      <span class="project-arrow">↗</span>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-
-  <script>
+<script>
     (function () {
       const root = document.documentElement;
       const skillsShell = document.getElementById('skillsShell');
@@ -1210,6 +1663,654 @@
         );
       }
     })();
-  </script>
+
+    
+
+
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const portal = document.querySelector(".works-portal");
+  const windowEl = document.getElementById("worksWindow");
+  const sky = document.getElementById("worksSky");
+  const header = document.getElementById("worksHeader");
+  const gallery = document.getElementById("worksGallery");
+  const webTrack = document.getElementById("webTrack");
+  const mediaTrack = document.getElementById("mediaTrack");
+  const webViewport = document.getElementById("webViewport");
+  const mediaViewport = document.getElementById("mediaViewport");
+
+  if (!portal || !windowEl || !sky || !header || !gallery || !webTrack || !mediaTrack || !webViewport || !mediaViewport) return;
+
+  const websiteProjects = [
+    {
+      title: "Ehtaram Events",
+      category: "Event Management",
+      meta: "Premium event showcase",
+      image: "assets/projects/project images/website_image_1.jpeg",
+      url: "https://www.ehtaramevents.com/"
+    },
+    {
+      title: "PV Electronics",
+      category: "Electronics",
+      meta: "Modern electronics business",
+      image: "assets/projects/project images/website_image_2.jpeg",
+      url: "https://www.parankamveettilelectronics.com/"
+    },
+    {
+      title: "Zaitoon",
+      category: "Restaurant",
+      meta: "Elegant food experience",
+      image: "assets/projects/project images/website_image_3.jpeg",
+      url: "https://zaitoon-restaurant.vercel.app/"
+    },
+    {
+      title: "Popular Cycles",
+      category: "Retail",
+      meta: "Cycle showroom website",
+      image: "assets/projects/project images/website_image_4.jpeg",
+      url: "https://www.popularcycles.online/"
+    },
+    {
+      title: "Talent Career Guidance Academy",
+      category: "Education",
+      meta: "Guidance and academy site",
+      image: "assets/projects/project images/website_image_5.jpeg",
+      url: "https://talent-six-smoky.vercel.app/"
+    },
+    {
+      title: "Koshi & Associates",
+      category: "Legal",
+      meta: "Professional law firm site",
+      image: "assets/projects/project images/website_image_6.jpeg",
+      url: "https://koshi-associates.vercel.app/"
+    },
+    {
+      title: "Classed Education",
+      category: "Education",
+      meta: "Consultancy and admissions",
+      image: "assets/projects/project images/website_image_7.jpeg",
+      url: "https://classeducationalconsultancy.vercel.app/"
+    },
+    {
+      title: "SS Detailing Studio",
+      category: "Automotive",
+      meta: "Car detailing brand",
+      image: "assets/projects/project images/website_image_8.jpeg",
+      url: "https://ss-detailing-studio-orpin.vercel.app/"
+    },
+  ];
+
+  const creativeProjects = [
+    {
+      title: "MGM Media Club",
+      category: "Reel",
+      meta: "Short-form motion content",
+      image: "assets/projects/project images/poster_video_1.jpeg",
+      url: "https://www.instagram.com/mgm_mediaclub/reel/DRmKaUnCbym/"
+    },
+    {
+      title: "Talent Poster One",
+      category: "Poster",
+      meta: "Campaign visual",
+      image: "assets/projects/project images/poster_video_2.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYzFgEiRqjJ/"
+    },
+    {
+      title: "Company Kkar",
+      category: "Reel",
+      meta: "Branded motion clip",
+      image: "assets/projects/project images/poster_video_3.jpeg",
+      url: "https://www.instagram.com/company_kkar/reel/DPp0o5jkU7p/"
+    },
+    {
+      title: "Talent Poster Two",
+      category: "Poster",
+      meta: "Editorial layout",
+      image: "assets/projects/project images/poster_video_4.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYzQ787R-jJ/"
+    },
+    {
+      title: "Talent Poster Three",
+      category: "Poster",
+      meta: "Brand poster design",
+      image: "assets/projects/project images/poster_video_5.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYw29B0Cdgb/"
+    },
+    {
+      title: "Talent Reel One",
+      category: "Reel",
+      meta: "Promotional edit",
+      image: "assets/projects/project images/poster_video_6.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY06zqqRXKn/"
+    },
+    {
+      title: "Talent Poster Four",
+      category: "Poster",
+      meta: "Announcement design",
+      image: "assets/projects/project images/poster_video_7.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYuaZF3JaeM/"
+    },
+    {
+      title: "Talent Reel Two",
+      category: "Reel",
+      meta: "Dynamic motion clip",
+      image: "assets/projects/project images/poster_video_8.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DYwzEJMJUvJ/"
+    },
+    {
+      title: "Talent Reel Three",
+      category: "Reel",
+      meta: "Fast-paced edit",
+      image: "assets/projects/project images/poster_video_9.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY8zO3lRtLM/"
+    },
+    {
+      title: "Talent Reel Four",
+      category: "Reel",
+      meta: "Cinematic social reel",
+      image: "assets/projects/project images/poster_video_10.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY4wpldMJ6L/"
+    }
+  ];
+
+  function createProjectCard(project) {
+    const card = document.createElement("a");
+    card.className = "project-card";
+    card.href = project.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+
+    const visual = document.createElement("div");
+    visual.className = "project-visual";
+
+    const img = document.createElement("img");
+    img.src = project.image;
+    img.alt = project.title;
+
+    visual.appendChild(img);
+
+    const body = document.createElement("div");
+    body.className = "project-body";
+
+    const content = document.createElement("div");
+
+    const tag = document.createElement("p");
+    tag.className = "project-tag";
+    tag.textContent = project.category;
+
+    const name = document.createElement("h3");
+    name.className = "project-name";
+    name.textContent = project.title;
+
+    const meta = document.createElement("p");
+    meta.className = "project-meta";
+    meta.textContent = project.meta || "View project";
+
+    content.append(tag, name, meta);
+
+    const arrow = document.createElement("span");
+    arrow.className = "project-arrow";
+    arrow.textContent = "↗";
+
+    body.append(content, arrow);
+    card.append(visual, body);
+    return card;
+  }
+
+  function renderProjects() {
+    webTrack.innerHTML = "";
+    mediaTrack.innerHTML = "";
+
+    websiteProjects.forEach((project) => webTrack.appendChild(createProjectCard(project)));
+    creativeProjects.forEach((project) => mediaTrack.appendChild(createProjectCard(project)));
+  }
+
+  renderProjects();
+
+  let webDistance = 0;
+  let mediaDistance = 0;
+  let scrollLength = 3200;
+
+  function measureWorks() {
+    webDistance = Math.max(0, webTrack.scrollWidth - webViewport.clientWidth);
+    mediaDistance = Math.max(0, mediaTrack.scrollWidth - mediaViewport.clientWidth);
+
+    const rowSpan = Math.max(webDistance, mediaDistance);
+    scrollLength = Math.max(window.innerHeight * 5.2, rowSpan * 1.75 + window.innerHeight * 2.8);
+
+    portal.style.height = `${Math.round(window.innerHeight + scrollLength + window.innerHeight * 1.1)}px`;
+  }
+
+  measureWorks();
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: portal,
+      start: "top top",
+      end: () => `+=${scrollLength}`,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onRefresh: measureWorks
+    }
+  });
+
+  tl.fromTo(windowEl,
+    {
+      scale: 0.72,
+      borderRadius: "999px",
+      borderWidth: "14px",
+      y: 0
+    },
+    {
+      scale: 1,
+      width: "100vw",
+      height: "100vh",
+      borderRadius: "0px",
+      borderWidth: "0px",
+      y: 0,
+      ease: "none",
+      duration: 0.4
+    }, 0);
+
+  tl.fromTo(sky,
+    {
+      scale: 1,
+      filter: "saturate(1.02) contrast(1.02) brightness(.98)"
+    },
+    {
+      scale: 1.04,
+      filter: "saturate(1.03) contrast(1.03) brightness(.94)",
+      ease: "none",
+      duration: 0.42
+    }, 0);
+
+  tl.to(header,
+    { autoAlpha: 1, y: 0, ease: "none", duration: 0.2 },
+    0.32
+  );
+
+  tl.to(sky,
+    { filter: "saturate(1.02) contrast(1.02) brightness(.90)", ease: "none", duration: 0.2 },
+    0.46
+  );
+
+  tl.to(header,
+    { autoAlpha: 0, y: -24, ease: "none", duration: 0.24 },
+    0.64
+  );
+
+  tl.to(gallery,
+    { autoAlpha: 1, y: 0, ease: "none", duration: 0.24 },
+    0.74
+  );
+
+  tl.to(sky,
+    { filter: "saturate(1.01) contrast(1.01) brightness(.86)", ease: "none", duration: 0.3 },
+    0.78
+  );
+
+  tl.fromTo(webTrack,
+    { x: 0 },
+    { x: () => -webDistance, ease: "none", duration: 1.1 },
+    0.88
+  );
+
+  tl.fromTo(mediaTrack,
+    { x: 0 },
+    { x: () => mediaDistance, ease: "none", duration: 1.1 },
+    0.88
+  );
+
+  ScrollTrigger.addEventListener("refreshInit", measureWorks);
+  window.addEventListener("resize", () => {
+    measureWorks();
+    ScrollTrigger.refresh();
+  }, { passive: true });
+})();
+
+</script>
 </body>
 </html>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const portal = document.querySelector(".works-portal");
+  const windowEl = document.getElementById("worksWindow");
+  const sky = document.getElementById("worksSky");
+  const header = document.getElementById("worksHeader");
+  const gallery = document.getElementById("worksGallery");
+  const webTrack = document.getElementById("webTrack");
+  const mediaTrack = document.getElementById("mediaTrack");
+  const webViewport = document.getElementById("webViewport");
+  const mediaViewport = document.getElementById("mediaViewport");
+
+  if (!portal || !windowEl || !sky || !header || !gallery || !webTrack || !mediaTrack || !webViewport || !mediaViewport) return;
+
+  const websiteProjects = [
+    {
+      title: "Ehtaram Events",
+      category: "Event Management",
+      meta: "Premium event showcase",
+      image: "assets/projects/project images/website_image_1.jpeg",
+      url: "https://www.ehtaramevents.com/"
+    },
+    {
+      title: "PV Electronics",
+      category: "Electronics",
+      meta: "Modern electronics business",
+      image: "assets/projects/project images/website_image_2.jpeg",
+      url: "https://www.parankamveettilelectronics.com/"
+    },
+    {
+      title: "Zaitoon",
+      category: "Restaurant",
+      meta: "Elegant food experience",
+      image: "assets/projects/project images/website_image_3.jpeg",
+      url: "https://zaitoon-restaurant.vercel.app/"
+    },
+    {
+      title: "Popular Cycles",
+      category: "Retail",
+      meta: "Cycle showroom website",
+      image: "assets/projects/project images/website_image_4.jpeg",
+      url: "https://www.popularcycles.online/"
+    },
+    {
+      title: "Talent Career Guidance Academy",
+      category: "Education",
+      meta: "Guidance and academy site",
+      image: "assets/projects/project images/website_image_5.jpeg",
+      url: "https://talent-six-smoky.vercel.app/"
+    },
+    {
+      title: "Koshi & Associates",
+      category: "Legal",
+      meta: "Professional law firm site",
+      image: "assets/projects/project images/website_image_6.jpeg",
+      url: "https://koshi-associates.vercel.app/"
+    },
+    {
+      title: "Classed Education",
+      category: "Education",
+      meta: "Consultancy and admissions",
+      image: "assets/projects/project images/website_image_7.jpeg",
+      url: "https://classeducationalconsultancy.vercel.app/"
+    },
+    {
+      title: "SS Detailing Studio",
+      category: "Automotive",
+      meta: "Car detailing brand",
+      image: "assets/projects/project images/website_image_8.jpeg",
+      url: "https://ss-detailing-studio-orpin.vercel.app/"
+    },
+    {
+      title: "Sportsmart",
+      category: "Retail",
+      meta: "Premium sports store",
+      image: "assets/projects/project images/website_image_9.jpeg",
+      url: "https://www.sportsmartpremium.com/"
+    },
+    {
+      title: "Bake Bae",
+      category: "Bakery",
+      meta: "Dessert and bakery brand",
+      image: "assets/projects/project images/website_image_10.jpeg",
+      url: "https://bake-bae.vercel.app/"
+    },
+    {
+      title: "Dr. Jesna Dental Clinic",
+      category: "Healthcare",
+      meta: "Clinic website",
+      image: "assets/projects/project images/website_image_11.jpeg",
+      url: "https://dr-jesna-s-dental-clinic.vercel.app/"
+    }
+  ];
+
+  const creativeProjects = [
+    {
+      title: "MGM Media Club",
+      category: "Reel",
+      meta: "Short-form motion content",
+      image: "assets/projects/project images/poster_video_1.jpeg",
+      url: "https://www.instagram.com/mgm_mediaclub/reel/DRmKaUnCbym/"
+    },
+    {
+      title: "Talent Poster One",
+      category: "Poster",
+      meta: "Campaign visual",
+      image: "assets/projects/project images/poster_video_2.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYzFgEiRqjJ/"
+    },
+    {
+      title: "Company Kkar",
+      category: "Reel",
+      meta: "Branded motion clip",
+      image: "assets/projects/project images/poster_video_3.jpeg",
+      url: "https://www.instagram.com/company_kkar/reel/DPp0o5jkU7p/"
+    },
+    {
+      title: "Talent Poster Two",
+      category: "Poster",
+      meta: "Editorial layout",
+      image: "assets/projects/project images/poster_video_4.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYzQ787R-jJ/"
+    },
+    {
+      title: "Talent Poster Three",
+      category: "Poster",
+      meta: "Brand poster design",
+      image: "assets/projects/project images/poster_video_5.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYw29B0Cdgb/"
+    },
+    {
+      title: "Talent Reel One",
+      category: "Reel",
+      meta: "Promotional edit",
+      image: "assets/projects/project images/poster_video_6.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY06zqqRXKn/"
+    },
+    {
+      title: "Talent Poster Four",
+      category: "Poster",
+      meta: "Announcement design",
+      image: "assets/projects/project images/poster_video_7.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/p/DYuaZF3JaeM/"
+    },
+    {
+      title: "Talent Reel Two",
+      category: "Reel",
+      meta: "Dynamic motion clip",
+      image: "assets/projects/project images/poster_video_8.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DYwzEJMJUvJ/"
+    },
+    {
+      title: "Talent Reel Three",
+      category: "Reel",
+      meta: "Fast-paced edit",
+      image: "assets/projects/project images/poster_video_9.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY8zO3lRtLM/"
+    },
+    {
+      title: "Talent Reel Four",
+      category: "Reel",
+      meta: "Cinematic social reel",
+      image: "assets/projects/project images/poster_video_10.jpeg",
+      url: "https://www.instagram.com/talent.international_academy/reel/DY4wpldMJ6L/"
+    }
+  ];
+
+  function createProjectCard(project) {
+    const card = document.createElement("a");
+    card.className = "project-card";
+    card.href = project.url;
+    card.target = "_blank";
+    card.rel = "noopener noreferrer";
+    card.setAttribute("aria-label", project.title);
+
+    const visual = document.createElement("div");
+    visual.className = "project-visual";
+
+    const img = document.createElement("img");
+    img.src = project.image;
+    img.alt = project.title;
+
+    visual.appendChild(img);
+
+    const body = document.createElement("div");
+    body.className = "project-body";
+
+    const content = document.createElement("div");
+
+    const tag = document.createElement("p");
+    tag.className = "project-tag";
+    tag.textContent = project.category;
+
+    const name = document.createElement("h3");
+    name.className = "project-name";
+    name.textContent = project.title;
+
+    const meta = document.createElement("p");
+    meta.className = "project-meta";
+    meta.textContent = project.meta || "View project";
+
+    content.append(tag, name, meta);
+
+    const arrow = document.createElement("span");
+    arrow.className = "project-arrow";
+    arrow.textContent = "↗";
+
+    body.append(content, arrow);
+    card.append(visual, body);
+    return card;
+  }
+
+  function renderProjects() {
+    webTrack.innerHTML = "";
+    mediaTrack.innerHTML = "";
+
+    websiteProjects.forEach((project) => webTrack.appendChild(createProjectCard(project)));
+    creativeProjects.forEach((project) => mediaTrack.appendChild(createProjectCard(project)));
+  }
+
+  renderProjects();
+
+  let webDistance = 0;
+  let mediaDistance = 0;
+  let scrollLength = 3200;
+
+  function measureWorks() {
+    webDistance = Math.max(0, webTrack.scrollWidth - webViewport.clientWidth);
+    mediaDistance = Math.max(0, mediaTrack.scrollWidth - mediaViewport.clientWidth);
+
+    const rowSpan = Math.max(webDistance, mediaDistance);
+    scrollLength = Math.max(window.innerHeight * 6.0, rowSpan * 2.15 + window.innerHeight * 3.1);
+
+    portal.style.height = `${Math.round(window.innerHeight + scrollLength + window.innerHeight * 1.2)}px`;
+  }
+
+  measureWorks();
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: portal,
+      start: "top top",
+      end: () => `+=${scrollLength}`,
+      scrub: 1,
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1.5,
+      fastScrollEnd: true,
+      invalidateOnRefresh: true,
+      onRefresh: measureWorks
+    }
+  });
+
+  tl.fromTo(windowEl,
+    {
+      scale: 0.72,
+      borderRadius: "999px",
+      borderWidth: "14px",
+      y: 0
+    },
+    {
+      scale: 1,
+      width: "100vw",
+      height: "100vh",
+      borderRadius: "0px",
+      borderWidth: "0px",
+      y: 0,
+      ease: "none",
+      duration: 0.34
+    }, 0);
+
+  tl.fromTo(sky,
+    {
+      scale: 1,
+      filter: "saturate(1.02) contrast(1.02) brightness(.98)"
+    },
+    {
+      scale: 1.03,
+      filter: "saturate(1.03) contrast(1.03) brightness(.94)",
+      ease: "none",
+      duration: 0.34
+    }, 0);
+
+  tl.to({}, { duration: 0.08, ease: "none" }, 0.34);
+
+  tl.fromTo(header,
+    { autoAlpha: 0, y: 18 },
+    { autoAlpha: 1, y: 0, ease: "none", duration: 0.18 },
+    0.36
+  );
+
+  tl.to(header,
+    { autoAlpha: 0, y: -20, ease: "none", duration: 0.22 },
+    0.58
+  );
+
+  tl.fromTo(gallery,
+    { autoAlpha: 0, y: 22 },
+    { autoAlpha: 1, y: 0, ease: "none", duration: 0.26 },
+    0.68
+  );
+
+  tl.to(sky,
+    { filter: "saturate(1.01) contrast(1.01) brightness(.89)", ease: "none", duration: 0.22 },
+    0.78
+  );
+
+  tl.to({}, { duration: 0.12, ease: "none" }, 0.88);
+
+  tl.fromTo(webTrack,
+    { x: 0 },
+    { x: () => -webDistance * 1.12, ease: "none", duration: 0.86 },
+    1.0
+  );
+
+  tl.fromTo(mediaTrack,
+    { x: 0 },
+    { x: () => mediaDistance * 1.0, ease: "none", duration: 1.12 },
+    1.0
+  );
+
+  ScrollTrigger.addEventListener("refreshInit", measureWorks);
+  window.addEventListener("resize", () => {
+    measureWorks();
+    ScrollTrigger.refresh();
+  }, { passive: true });
+
+  window.addEventListener("load", () => {
+    measureWorks();
+    ScrollTrigger.refresh();
+  });
+})();
+
