@@ -214,8 +214,8 @@ body.loaded .bottombar{
   border: 1px solid rgba(12,12,12,.08);
   background: rgba(252,251,248,.62);
   box-shadow: 0 18px 50px rgba(0,0,0,.10);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: transform 700ms cubic-bezier(.22,1,.36,1), box-shadow 400ms ease;
 }
 body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
@@ -362,7 +362,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   border: 1px solid var(--card-border);
   background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(249,247,243,.55));
   box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   position: relative;
@@ -582,6 +582,97 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 .story-ending{ padding: 10rem 0 4rem; text-align: center; border-top: 1px solid rgba(0,0,0,.08); margin-top: 8rem; background:var(--editorial-bg);}
 .story-ending h2{ margin: 0; font-size: clamp(2.6rem,7vw,7rem); line-height: .92; text-transform: uppercase; font-weight: 600; letter-spacing: .01em; }
 .story-ending p{ max-width: 760px; margin: 2rem auto 0; font-size: 1.12rem; line-height: 2; color: rgba(0,0,0,.72); }
+
+
+
+/* ================================================================
+   TECH STACK
+   ================================================================ */
+.stack-section{
+  width: min(1400px, 92vw);
+  margin: 0 auto;
+  padding: 8rem 0 9rem;
+  background: var(--editorial-bg);
+}
+.stack-head{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+.stack-eyebrow{ margin: 0 0 1rem; font-size: .78rem; letter-spacing: .45em; text-transform: uppercase; color: rgba(0,0,0,.45); }
+.stack-title{
+  margin: 0;
+  font-size: clamp(2.4rem, 5.6vw, 5rem);
+  line-height: .9;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.stack-note{ max-width: 26rem; font-size: .98rem; line-height: 1.8; color: rgba(0,0,0,.6); margin: 0; }
+.stack-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+}
+.stack-item{
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 22px;
+  padding: 1.35rem 1.4rem;
+  background: rgba(255,255,255,.42);
+  box-shadow: 0 12px 40px rgba(0,0,0,.04);
+  transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .35s ease;
+}
+.stack-item:hover, .stack-item:focus-visible{
+  transform: translateY(-4px);
+  border-color: rgba(0,0,0,.22);
+  box-shadow: 0 20px 54px rgba(0,0,0,.09);
+}
+.stack-item span{ display: block; font-size: .66rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(0,0,0,.42); margin-bottom: .6rem; }
+.stack-item strong{ display: block; font-size: 1.05rem; font-weight: 600; color: rgba(0,0,0,.92); line-height: 1.4; }
+
+/* ================================================================
+   NOW / CURRENTLY BUILDING
+   ================================================================ */
+.now-section{
+  width: min(1400px, 92vw);
+  margin: 0 auto;
+  padding: 0 0 9rem;
+  background: var(--editorial-bg);
+}
+.now-card{
+  border: 1px solid rgba(0,0,0,.09);
+  border-radius: 30px;
+  padding: clamp(2rem, 4vw, 3.2rem);
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.28));
+  box-shadow: 0 20px 60px rgba(0,0,0,.06);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.now-status{ display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(0,0,0,.5); margin: 0 0 1.4rem; }
+.now-status .dot{ width: 7px; height: 7px; border-radius: 50%; background: #C8A96B; box-shadow: 0 0 0 4px rgba(200,169,107,.18); }
+.now-title{ margin: 0 0 1rem; font-size: clamp(1.6rem, 3vw, 2.4rem); text-transform: uppercase; letter-spacing: .01em; font-weight: 600; }
+.now-list{ margin: 0; padding: 0; list-style: none; display: grid; gap: .9rem; }
+.now-list li{
+  font-size: .98rem;
+  line-height: 1.6;
+  color: rgba(0,0,0,.7);
+  padding-left: 1.4rem;
+  position: relative;
+}
+.now-list li::before{
+  content: "";
+  position: absolute;
+  left: 0; top: .55em;
+  width: 6px; height: 1px;
+  background: rgba(0,0,0,.5);
+}
+@media (max-width: 900px){
+  .now-card{ grid-template-columns: 1fr; }
+}
 
 
 
@@ -1025,14 +1116,17 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   border-radius: 30px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.34);
-  background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(248,244,236,.82));
-  box-shadow: 0 22px 80px rgba(0,0,0,.14);
-  backdrop-filter: blur(18px);
+  background: linear-gradient(180deg, rgba(255,255,255,.94), rgba(248,244,236,.9));
+  box-shadow: 0 14px 40px rgba(0,0,0,.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   position: relative;
   isolation: isolate;
   pointer-events: auto;
-  transform: translateY(0);
-  transition: transform .55s cubic-bezier(.22,1,.36,1), box-shadow .55s cubic-bezier(.22,1,.36,1), border-color .55s cubic-bezier(.22,1,.36,1);
+  transform: translateZ(0);
+  contain: content;
+  backface-visibility: hidden;
+  transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s cubic-bezier(.22,1,.36,1), border-color .4s cubic-bezier(.22,1,.36,1);
 }
 .project-card::before{
   content: "";
@@ -1041,7 +1135,8 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   pointer-events: none;
   z-index: 2;
 }
-.project-card:hover{ transform: translateY(-10px); border-color: rgba(255,255,255,.58); box-shadow: 0 28px 90px rgba(0,0,0,.18); }
+.project-card:hover, .project-card:focus-visible{ transform: translateY(-8px) translateZ(0); border-color: rgba(255,255,255,.58); box-shadow: 0 20px 54px rgba(0,0,0,.16); }
+.project-card:focus-visible{ outline: 2px solid rgba(12,12,12,.55); outline-offset: 3px; }
 .project-visual{ position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: rgba(255,255,255,.2); }
 .project-visual::after{
   content: "";
@@ -1172,7 +1267,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   padding-bottom: .22rem;
   transition: border-color 300ms ease, opacity 300ms ease, transform 300ms ease;
 }
-.contact-link-row a:hover{
+.contact-link-row a:hover, .contact-link-row a:focus-visible{
   border-color: rgba(0,0,0,.75);
 }
 .contact-cta{
@@ -1206,11 +1301,11 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   border-right: 1px solid rgba(0,0,0,.62);
   transform: rotate(45deg);
 }
-.contact-cta:hover .arrow-line{
+.contact-cta:hover .arrow-line, .contact-cta:focus-visible .arrow-line{
   transform: translateX(4px);
   background: rgba(0,0,0,.82);
 }
-.contact-cta:hover{
+.contact-cta:hover, .contact-cta:focus-visible{
   opacity: .82;
 }
 .contact-footer{
@@ -1316,11 +1411,12 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   background:
     radial-gradient(circle at 14% 14%, rgba(255,255,255,.72), transparent 25%),
     linear-gradient(180deg, rgba(255,255,255,.72), rgba(248,244,236,.60));
-  box-shadow: 0 24px 80px rgba(0,0,0,.12);
-  backdrop-filter: blur(14px);
-  transform: translateY(18px) scale(.985);
+  box-shadow: 0 16px 50px rgba(0,0,0,.10);
+  backdrop-filter: blur(9px);
+  transform: translateY(18px) scale(.985) translateZ(0);
   opacity: .86;
-  transition: transform .65s cubic-bezier(.22,1,.36,1), opacity .65s cubic-bezier(.22,1,.36,1), box-shadow .65s cubic-bezier(.22,1,.36,1);
+  will-change: transform, opacity;
+  transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1);
 }
 .process-card::before{
   content: "";
@@ -1329,7 +1425,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   pointer-events: none;
   z-index: 0;
 }
-.process-step.is-active .process-card{ transform: translateY(0) scale(1); opacity: 1; box-shadow: 0 30px 96px rgba(0,0,0,.16); }
+.process-step.is-active .process-card{ transform: translateY(0) scale(1) translateZ(0); opacity: 1; box-shadow: 0 20px 60px rgba(0,0,0,.14); }
 .process-left, .process-mid, .process-visual{ position: relative; z-index: 1; }
 .process-left{ padding: clamp(1.5rem, 2.6vw, 2.5rem); display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(0,0,0,.06); }
 .process-index{ display: block; font-size: clamp(4rem, 8vw, 7rem); line-height: .8; font-weight: 900; letter-spacing: .03em; color: rgba(0,0,0,.08); user-select: none; }
@@ -1454,7 +1550,30 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     transform:translateY(-6px);
 }
 
-
+/* ================================================================
+   ACCESSIBILITY — skip link + focus states
+   ================================================================ */
+.skip-link{
+  position: absolute;
+  left: 1rem;
+  top: -60px;
+  z-index: 999;
+  background: var(--ink);
+  color: var(--bg-1);
+  padding: .8rem 1.2rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: top 220ms ease;
+}
+.skip-link:focus{ top: 1rem; }
+a:focus-visible, button:focus-visible{
+  outline: 2px solid rgba(12,12,12,.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.nav-links a:focus-visible::after{ transform: scaleX(1); }
 
 /* ================================================================
    12. RESPONSIVE — TABLET (≤ 1100px)
@@ -1478,6 +1597,8 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   .process-visual{ border-left: 0; border-top: 1px solid rgba(0,0,0,.06); min-height: 44vh; }
 
   .contact-grid{ grid-template-columns: 1fr; }
+
+  .now-card{ grid-template-columns: 1fr; }
 }
 
 /* ================================================================
@@ -1520,6 +1641,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   .contact-footer{ margin-top: 4rem; flex-direction: column; align-items: flex-start; }
   .footer-wrap{ flex-direction: column; align-items: flex-start; }
   .footer-meta{ text-align: left; }
+
+  .stack-section{ padding: 6rem 0 6rem; }
+  .stack-head{ flex-direction: column; align-items: flex-start; }
 }
 
 /* ================================================================
@@ -1538,13 +1662,16 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 </head>
 <body>
 
+<a href="#hero" class="skip-link">Skip to content</a>
+
 <!-- ================================================================
      FLOATING NAV
      ================================================================ -->
-<nav class="floating-nav" id="floatingNav">
+<nav class="floating-nav" id="floatingNav" aria-label="Primary">
   <a href="#hero" class="nav-mark">R.S</a>
   <div class="nav-links">
     <a href="#editorialStory">Story</a>
+    <a href="#stack">Stack</a>
     <a href="#projects">Work</a>
     <a href="#contact">Contact</a>
   </div>
@@ -1613,7 +1740,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
             </div>
             <div class="card-right">
               <div class="visual-panel">
-                <img class="art-image" src="assets/skills/1.jpeg" alt="Programming still life">
+                <img class="art-image" src="assets/skills/1.jpeg" alt="Programming still life" loading="lazy" decoding="async">
               </div>
             </div>
           </article>
@@ -1630,7 +1757,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
             </div>
             <div class="card-right">
               <div class="visual-panel">
-                <img class="art-image" src="assets/skills/2.jpeg" alt="Founder still life">
+                <img class="art-image" src="assets/skills/2.jpeg" alt="Founder still life" loading="lazy" decoding="async">
               </div>
             </div>
           </article>
@@ -1647,7 +1774,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
             </div>
             <div class="card-right">
               <div class="visual-panel">
-                <img class="art-image" src="assets/skills/3.jpeg" alt="Filmmaking still life">
+                <img class="art-image" src="assets/skills/3.jpeg" alt="Filmmaking still life" loading="lazy" decoding="async">
               </div>
             </div>
           </article>
@@ -1670,7 +1797,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     src="assets/about/3 faces.png"
     alt=""
     class="story-three-faces"
-    aria-hidden="true">
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
 
     <p class="intro-copy">
       Three disciplines. One mindset — building useful web experiences, shaping early-stage ideas, and creating stories that leave a lasting impression.
@@ -1689,7 +1818,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     src="assets/about/ideas to reality.png"
     alt=""
     class="chapter-side-art"
-    aria-hidden="true">
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
           <div class="chapter-rule"></div>
           <p class="chapter-kicker">
             Software is most exciting when it becomes useful. I like building things that feel clear, fast, and dependable.
@@ -1733,7 +1864,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     src="assets/about/Building Elevated Web Solutions.png"
     alt=""
     class="chapter-side-art founder-art"
-    aria-hidden="true">
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
           
           <div class="chapter-rule"></div>
           
@@ -1785,7 +1918,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     src="assets/about/Stories Beyond The Screen.png"
     alt=""
     class="chapter-side-art creative-art"
-    aria-hidden="true">
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
         </div>
         <div class="chapter-body">
           <p class="chapter-paragraph">
@@ -1826,6 +1961,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
 
 
+
 <!-- ================================================================
      WHAT DEFINES ME
      ================================================================ -->
@@ -1844,6 +1980,8 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
       src="assets/greek vr-Photoroom.png"
       alt=""
       class="defines-statue"
+      loading="lazy"
+      decoding="async"
   >
         <div class="defines-line"></div>
 
@@ -1854,10 +1992,13 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
         <video
             class="defines-video"
+            id="definesVideo"
             autoplay
             muted
             loop
-            playsinline>
+            playsinline
+            preload="metadata"
+            aria-hidden="true">
 
             <source src="assets/whoamibg.mp4" type="video/mp4">
 
@@ -1869,6 +2010,29 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
 </section>
 
+
+<!-- ================================================================
+     TECH STACK
+     ================================================================ -->
+<section class="stack-section" id="stack">
+  <div class="stack-head">
+    <div>
+      <p class="stack-eyebrow">Toolkit</p>
+      <h2 class="stack-title">What I Build With</h2>
+    </div>
+    <p class="stack-note">The stack behind every client site, dashboard, and experiment — chosen for speed, reliability, and room to scale.</p>
+  </div>
+  <div class="stack-grid">
+    <div class="stack-item" tabindex="0"><span>Framework</span><strong>Next.js 14 / 15</strong></div>
+    <div class="stack-item" tabindex="0"><span>Backend</span><strong>Firebase</strong></div>
+    <div class="stack-item" tabindex="0"><span>Backend</span><strong>Supabase</strong></div>
+    <div class="stack-item" tabindex="0"><span>3D / Motion</span><strong>Three.js</strong></div>
+    <div class="stack-item" tabindex="0"><span>Animation</span><strong>GSAP &amp; ScrollTrigger</strong></div>
+    <div class="stack-item" tabindex="0"><span>Commerce</span><strong>WhatsApp Booking &amp; Ordering</strong></div>
+    <div class="stack-item" tabindex="0"><span>SEO</span><strong>Structured Data &amp; JSON-LD</strong></div>
+    <div class="stack-item" tabindex="0"><span>Performance</span><strong>Core Web Vitals Tuning</strong></div>
+  </div>
+</section>
 
 
 <!-- ================================================================
@@ -1898,7 +2062,9 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     src="assets/greeklap.png"
     alt=""
     class="works-statue"
-    aria-hidden="true">
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async">
     </div>
 
 </section>
@@ -1908,7 +2074,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     <div class="works-stage" id="worksStage">
       <div class="works-sky-wrap">
         <div class="works-window" id="worksWindow">
-          <img class="works-sky" id="worksSky" src="assets/projects/sky.jpeg" alt="Sky background">
+          <img class="works-sky" id="worksSky" src="assets/projects/sky.jpeg" alt="Sky background" loading="eager" decoding="async">
           <div class="works-sheen"></div>
           <div class="works-noise"></div>
         </div>
@@ -1938,6 +2104,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     </div>
   </div>
 </section>
+
 
 
 <!-- ================================================================
@@ -1978,10 +2145,35 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
 <script>
 /* ================================================================
+   SCRIPT 0 — GLOBAL SCROLL/GSAP PERFORMANCE CONFIG
+   Runs once, before every other script below. ignoreMobileResize
+   stops ScrollTrigger from recalculating every pin on mobile when
+   only the address bar shows/hides (the biggest source of janky
+   re-layout on phones). normalizeScroll smooths out the native
+   scroll so pinned/scrubbed sections (like the project showcase)
+   don't feel like they're stepping instead of gliding.
+   ================================================================ */
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.ticker.lagSmoothing(1000, 33);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
+  }
+})();
+
+/* ================================================================
    SCRIPT 1 — HERO + BRANCH + HORIZONTAL SKILLS
    Uses a lightweight lerp loop so scroll-driven values glide
    toward their target instead of snapping to the raw scroll
    position (a manual, dependency-free "inertia").
+
+   PERF NOTE: the animation loop only runs while values are still
+   settling (or while the user is actively scrolling/resizing).
+   Layout-dependent measurements (offsetTop/offsetHeight) are
+   cached on load/resize instead of being re-read every frame,
+   which was the main source of forced-reflow jank during scroll.
    ================================================================ */
 (function () {
   const root = document.documentElement;
@@ -2006,6 +2198,13 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   let targetSectionOpacity = 0, currentSectionOpacity = 0;
 
   let rafId = null;
+  let isTicking = false;
+
+  // Cached, layout-dependent measurements — recomputed only on
+  // load/resize, never inside the per-frame loop.
+  let cachedShellTop = 0;
+  let cachedScrollRange = 1;
+  let cachedPinOffset = 0;
 
   function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
   function lerp(a, b, t) { return a + (b - a) * t; }
@@ -2034,6 +2233,11 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     const topGap = window.innerHeight * 0.12;
     const bottomGap = window.innerHeight * 0.10;
     skillsShell.style.height = `${window.innerHeight + maxTrackX + topGap + bottomGap}px`;
+
+    // Cache the values that used to be read every animation frame.
+    cachedPinOffset = window.innerHeight * 0.12;
+    cachedShellTop = skillsShell.offsetTop + cachedPinOffset;
+    cachedScrollRange = Math.max(1, skillsShell.offsetHeight - window.innerHeight - (window.innerHeight * 0.22));
   }
 
   function computeTargets() {
@@ -2051,15 +2255,13 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
       targetShirasOffset = 0;
     }
 
-    // Horizontal skills track
-    const pinOffset = window.innerHeight * 0.12;
-    const shellTop = skillsShell.offsetTop + pinOffset;
-    const scrollRange = Math.max(1, skillsShell.offsetHeight - window.innerHeight - (window.innerHeight * 0.22));
-    const trackProgress = clamp((window.scrollY - shellTop) / scrollRange, 0, 1);
+    // Horizontal skills track — uses cached shellTop/scrollRange,
+    // no layout reads happen here.
+    const trackProgress = clamp((window.scrollY - cachedShellTop) / cachedScrollRange, 0, 1);
     targetTrackX = -maxTrackX * trackProgress;
 
     const viewportH = window.innerHeight;
-    const fadeProgress = clamp((window.scrollY - shellTop + viewportH * 0.12) / (viewportH * 0.5), 0, 1);
+    const fadeProgress = clamp((window.scrollY - cachedShellTop + viewportH * 0.12) / (viewportH * 0.5), 0, 1);
     targetSectionOpacity = fadeProgress;
 
     const visibleIndex = clamp(Math.round(trackProgress * (cards.length - 1)), 0, cards.length - 1);
@@ -2068,11 +2270,22 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     });
   }
 
+  function valuesSettled() {
+    const eps = 0.05;
+    return (
+      Math.abs(currentTrackX - targetTrackX) < eps &&
+      Math.abs(currentNameOpacity - targetNameOpacity) < 0.002 &&
+      Math.abs(currentRaihanOffset - targetRaihanOffset) < eps &&
+      Math.abs(currentShirasOffset - targetShirasOffset) < eps &&
+      Math.abs(currentSectionOpacity - targetSectionOpacity) < 0.002
+    );
+  }
+
   function tick() {
     computeTargets();
 
     // Smoothing factor: lower = more inertia/glide, higher = snappier.
-    const ease = prefersReduced ? 1 : 0.14;
+    const ease = prefersReduced ? 1 : 0.2;
 
     currentTrackX = lerp(currentTrackX, targetTrackX, ease);
     currentNameOpacity = lerp(currentNameOpacity, targetNameOpacity, ease);
@@ -2087,7 +2300,23 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     root.style.setProperty('--section-opacity', currentSectionOpacity.toFixed(3));
     root.style.setProperty('--section-translate', `${lerp(18, 0, currentSectionOpacity).toFixed(2)}px`);
 
+    // Stop the loop once everything has settled instead of running
+    // forever — this was the biggest continuous CPU/GPU cost on the
+    // page. It restarts instantly on the next scroll/resize event.
+    if (valuesSettled() && !prefersReduced) {
+      isTicking = false;
+      rafId = null;
+      return;
+    }
+
     rafId = requestAnimationFrame(tick);
+  }
+
+  function requestTick() {
+    if (!isTicking) {
+      isTicking = true;
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
   }
 
   window.addEventListener('mousemove', (e) => {
@@ -2102,6 +2331,8 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     root.style.setProperty('--branch-rot', '0deg');
   });
 
+  window.addEventListener('scroll', requestTick, { passive: true });
+
   window.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(() => {
       document.body.classList.add('loaded');
@@ -2113,13 +2344,20 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
       currentShirasOffset = targetShirasOffset;
       currentSectionOpacity = targetSectionOpacity;
       skillsReveal.classList.add('is-visible');
-      if (!rafId) rafId = requestAnimationFrame(tick);
+      requestTick();
     });
   });
 
-  window.addEventListener('load', () => { measureHorizontal(); });
+  window.addEventListener('load', () => { measureHorizontal(); requestTick(); });
 
-  window.addEventListener('resize', () => { measureHorizontal(); }, { passive: true });
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      measureHorizontal();
+      requestTick();
+    }, 120);
+  }, { passive: true });
 })();
 
 /* ================================================================
@@ -2129,8 +2367,14 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   const nav = document.getElementById('floatingNav');
   if (!nav) return;
 
+  let navTicking = false;
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('is-scrolled', window.scrollY > 40);
+    if (navTicking) return;
+    navTicking = true;
+    requestAnimationFrame(() => {
+      nav.classList.toggle('is-scrolled', window.scrollY > 40);
+      navTicking = false;
+    });
   }, { passive: true });
 
   nav.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -2142,6 +2386,18 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
       targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+})();
+
+/* ================================================================
+   SCRIPT 1c — Respect reduced motion for the autoplaying video
+   ================================================================ */
+(function () {
+  const video = document.getElementById('definesVideo');
+  if (!video) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.removeAttribute('autoplay');
+    video.pause();
+  }
 })();
 
 /* ================================================================
@@ -2175,7 +2431,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
         trigger: chapter,
         start: "top 98%",
         end: "bottom 35%",
-        scrub: 1
+        scrub: 0.6
       }
     });
 
@@ -2218,6 +2474,24 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
         scrollTrigger: { trigger: ending, start: "top 80%" }
       }
     );
+  }
+
+  // Tech stack + Now section reveal (same lightweight pattern as
+  // the rest of the editorial content).
+  const stackItems = document.querySelectorAll(".stack-item");
+  if (stackItems.length) {
+    gsap.set(stackItems, { autoAlpha: 0, y: 18 });
+    gsap.to(stackItems, {
+      autoAlpha: 1, y: 0, stagger: 0.05, duration: 0.5, ease: "power3.out",
+      scrollTrigger: { trigger: ".stack-section", start: "top 82%" }
+    });
+  }
+  const nowCard = document.querySelector(".now-card");
+  if (nowCard) {
+    gsap.fromTo(nowCard, { autoAlpha: 0, y: 24 }, {
+      autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out",
+      scrollTrigger: { trigger: nowCard, start: "top 85%" }
+    });
   }
 })();
 
@@ -2272,6 +2546,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     card.href = project.url;
     card.target = "_blank";
     card.rel = "noopener noreferrer";
+    card.setAttribute("aria-label", `${project.title} — ${project.category}, opens in a new tab`);
 
     const visual = document.createElement("div");
     visual.className = "project-visual";
@@ -2279,6 +2554,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
     img.src = project.image;
     img.alt = project.title;
     img.loading = "lazy";
+    img.decoding = "async";
     visual.appendChild(img);
 
     const body = document.createElement("div");
@@ -2301,6 +2577,7 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
     const arrow = document.createElement("span");
     arrow.className = "project-arrow";
+    arrow.setAttribute("aria-hidden", "true");
     arrow.textContent = "↗";
 
     body.append(content, arrow);
@@ -2309,10 +2586,14 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   }
 
   function renderProjects() {
+    const webFrag = document.createDocumentFragment();
+    const mediaFrag = document.createDocumentFragment();
+    websiteProjects.forEach((project) => webFrag.appendChild(createProjectCard(project)));
+    creativeProjects.forEach((project) => mediaFrag.appendChild(createProjectCard(project)));
     webTrack.innerHTML = "";
     mediaTrack.innerHTML = "";
-    websiteProjects.forEach((project) => webTrack.appendChild(createProjectCard(project)));
-    creativeProjects.forEach((project) => mediaTrack.appendChild(createProjectCard(project)));
+    webTrack.appendChild(webFrag);
+    mediaTrack.appendChild(mediaFrag);
   }
 
   renderProjects();
@@ -2344,9 +2625,12 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
       trigger: portal,
       start: "top top",
       end: () => `+=${scrollLength}`,
-      scrub: 1.2,
+      scrub: 0.5,
       pin: true,
+      pinType: "transform",
       anticipatePin: 1,
+      fastScrollEnd: true,
+      preventOverlaps: true,
       invalidateOnRefresh: true,
       onRefresh: measureWorks
     }
@@ -2372,9 +2656,13 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
   tl.fromTo(mediaTrack, { x: () => -mediaDistance }, { x: 0, ease: "none", duration: 1.1 }, 0.88);
 
   ScrollTrigger.addEventListener("refreshInit", measureWorks);
+  let worksResizeTimer = null;
   window.addEventListener("resize", () => {
-    measureWorks();
-    ScrollTrigger.refresh();
+    clearTimeout(worksResizeTimer);
+    worksResizeTimer = setTimeout(() => {
+      measureWorks();
+      ScrollTrigger.refresh();
+    }, 150);
   }, { passive: true });
 })();
 
@@ -2428,4 +2716,4 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 })();
 </script>
 </body>
-</html> 
+</html>
