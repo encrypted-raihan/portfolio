@@ -1658,9 +1658,356 @@ a:focus-visible, button:focus-visible{
     animation: none !important;
   }
 }
+
+/* ================================================================
+   LOADING SCREEN — editorial, asset-free, lightweight
+   ================================================================ */
+body.loading{
+  overflow:hidden;
+  height:100vh;
+}
+
+.site-loader{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:clamp(1.5rem,3vw,3rem);
+  background:#f5f1e9;
+  color:#101010;
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+  transition:
+    transform 1050ms cubic-bezier(.76,0,.24,1),
+    opacity 500ms ease,
+    visibility 0s linear 0s;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+.site-loader.is-exiting{
+  transform:translateY(-100%);
+  opacity:1;
+  visibility:hidden;
+  transition:
+    transform 1050ms cubic-bezier(.76,0,.24,1),
+    opacity 500ms ease 250ms,
+    visibility 0s linear 1050ms;
+}
+
+.site-loader::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255,255,255,.42), transparent 28%),
+    radial-gradient(circle at 12% 90%, rgba(0,0,0,.025), transparent 22%),
+    radial-gradient(circle at 92% 14%, rgba(200,169,107,.05), transparent 20%);
+  z-index:-1;
+}
+
+.site-loader::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.035;
+  background-image:
+    linear-gradient(rgba(0,0,0,.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.22) 1px, transparent 1px);
+  background-size:42px 42px;
+  mix-blend-mode:multiply;
+  z-index:-1;
+}
+
+.loader-top,
+.loader-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  position:relative;
+  z-index:2;
+}
+
+.loader-mark{
+  font-family:var(--font-display);
+  font-size:clamp(1rem,1.35vw,1.25rem);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+
+.loader-meta{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.48em;
+  text-transform:uppercase;
+  color:rgba(16,16,16,.58);
+}
+
+.loader-center{
+  width:min(850px,84vw);
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  z-index:2;
+  padding:3rem 0;
+}
+
+.loader-index{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:clamp(.9rem,1.4vw,1.15rem);
+  font-weight:400;
+  letter-spacing:.42em;
+  color:#c8a96b;
+  opacity:0;
+  transform:translateY(12px);
+  animation:loaderRise 700ms cubic-bezier(.22,1,.36,1) 100ms forwards;
+}
+
+.loader-index-rule{
+  width:4.3rem;
+  height:1px;
+  margin-top:1.15rem;
+  background:#c8a96b;
+  transform:scaleX(0);
+  transform-origin:center;
+  animation:loaderRule 700ms cubic-bezier(.22,1,.36,1) 260ms forwards;
+}
+
+.loader-name{
+  width:100%;
+  margin:clamp(1.8rem,3vw,2.8rem) 0 0;
+  font-family:var(--font-display);
+  font-size:clamp(4.2rem,10.8vw,10.8rem);
+  font-weight:900;
+  line-height:.82;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+  color:#101010;
+}
+
+.loader-name-line{
+  display:block;
+  overflow:hidden;
+  clip-path:inset(0 0 0 0);
+}
+
+.loader-name-line span{
+  display:block;
+  transform:translateY(108%);
+  animation:loaderTextIn 1050ms cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.loader-name-line:nth-child(2) span{
+  animation-delay:110ms;
+}
+
+.loader-progress-wrap{
+  width:min(735px,100%);
+  margin-top:clamp(2.8rem,5vw,4.5rem);
+}
+
+.loader-progress-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:.95rem;
+}
+
+.loader-progress-title,
+.loader-progress-value{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:clamp(8px,.75vw,10px);
+  font-weight:500;
+  letter-spacing:.44em;
+  text-transform:uppercase;
+}
+
+.loader-progress-value{
+  letter-spacing:.18em;
+  color:#111;
+}
+
+.loader-progress-track{
+  width:100%;
+  height:2px;
+  overflow:hidden;
+  background:rgba(16,16,16,.12);
+  position:relative;
+}
+
+.loader-progress-fill{
+  width:100%;
+  height:100%;
+  background:#101010;
+  transform-origin:left center;
+  transform:scaleX(0);
+  will-change:transform;
+}
+
+.loader-message{
+  margin:1.2rem 0 0;
+  font-family:var(--font-body);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.46em;
+  text-transform:uppercase;
+  color:#c8a96b;
+}
+
+.loader-bottom{
+  align-items:flex-end;
+}
+
+.loader-wait{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.8rem;
+  white-space:nowrap;
+}
+
+.loader-arrow{
+  width:1px;
+  height:2.8rem;
+  position:relative;
+  background:#c8a96b;
+  overflow:visible;
+}
+
+.loader-arrow::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:7px;
+  height:7px;
+  border-right:1px solid #c8a96b;
+  border-bottom:1px solid #c8a96b;
+  transform:translate(-50%,0) rotate(45deg);
+}
+
+.loader-wait-text{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.5em;
+  text-transform:uppercase;
+  color:rgba(16,16,16,.76);
+}
+
+@keyframes loaderRise{
+  to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes loaderRule{
+  to{ transform:scaleX(1); }
+}
+
+@keyframes loaderTextIn{
+  to{ transform:translateY(0); }
+}
+
+@media (max-width: 700px){
+  .site-loader{ padding:1.25rem; }
+  .loader-top,
+  .loader-bottom{ align-items:flex-start; }
+  .loader-meta{ font-size:7px; letter-spacing:.32em; text-align:right; }
+  .loader-center{ width:92vw; }
+  .loader-name{
+    font-size:clamp(3.5rem,16vw,7rem);
+    line-height:.84;
+  }
+  .loader-progress-wrap{ margin-top:3rem; }
+  .loader-progress-title,
+  .loader-progress-value{
+    font-size:7px;
+    letter-spacing:.3em;
+  }
+  .loader-message{
+    font-size:7px;
+    letter-spacing:.34em;
+  }
+  .loader-wait{ bottom:-.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .site-loader,
+  .site-loader.is-exiting{
+    transition:none;
+  }
+  .loader-index,
+  .loader-index-rule,
+  .loader-name-line span{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+}
+
 </style>
 </head>
-<body>
+<body class="loading">
+
+<!-- ================================================================
+     ASSET-FREE EDITORIAL LOADING SCREEN
+     ================================================================ -->
+<div class="site-loader" id="siteLoader" aria-live="polite" aria-label="Loading portfolio">
+  <div class="loader-top">
+    <div class="loader-mark">R.S</div>
+    <p class="loader-meta">Portfolio &copy; 2026</p>
+  </div>
+
+  <div class="loader-center">
+    <p class="loader-index">01</p>
+    <div class="loader-index-rule" aria-hidden="true"></div>
+
+    <h1 class="loader-name" aria-label="Raihan Shiras">
+      <span class="loader-name-line"><span>RAIHAN</span></span>
+      <span class="loader-name-line"><span>SHIRAS</span></span>
+    </h1>
+
+    <div class="loader-progress-wrap">
+      <div class="loader-progress-head">
+        <p class="loader-progress-title">Loading Experience</p>
+        <p class="loader-progress-value" id="loaderProgressValue">00%</p>
+      </div>
+      <div class="loader-progress-track" aria-hidden="true">
+        <div class="loader-progress-fill" id="loaderProgressFill"></div>
+      </div>
+      <p class="loader-message" id="loaderMessage">Crafting Something Exceptional</p>
+    </div>
+  </div>
+
+  <div class="loader-bottom">
+    <p class="loader-meta">Entrepreneur &amp; Dev</p>
+    <div class="loader-wait">
+      <div class="loader-arrow" aria-hidden="true"></div>
+      <p class="loader-wait-text">Please Wait</p>
+    </div>
+    <span aria-hidden="true"></span>
+  </div>
+</div>
+
+
 
 <a href="#hero" class="skip-link">Skip to content</a>
 
@@ -2161,6 +2508,128 @@ a:focus-visible, button:focus-visible{
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
   }
+})();
+
+
+/* ================================================================
+   LOADER — lightweight asset-free intro sequence
+   ================================================================ */
+(function () {
+  const loader = document.getElementById("siteLoader");
+  const progressFill = document.getElementById("loaderProgressFill");
+  const progressValue = document.getElementById("loaderProgressValue");
+  const message = document.getElementById("loaderMessage");
+
+  if (!loader || !progressFill || !progressValue || !message) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const messages = [
+    "Crafting Something Exceptional",
+    "Building The Frame",
+    "Setting The Type",
+    "Composing The Experience",
+    "Almost There"
+  ];
+
+  let progress = 0;
+  let target = 92;
+  let startedAt = performance.now();
+  let loaded = document.readyState === "complete";
+  let finished = false;
+  let messageIndex = 0;
+  let messageTimer = null;
+
+  const setProgress = (value) => {
+    const clamped = Math.max(0, Math.min(100, value));
+    progress = clamped;
+    progressFill.style.transform = `scaleX(${clamped / 100})`;
+    progressValue.textContent = `${Math.round(clamped).toString().padStart(2, "0")}%`;
+
+    const nextIndex = Math.min(
+      messages.length - 1,
+      Math.floor(clamped / 20)
+    );
+
+    if (nextIndex !== messageIndex) {
+      messageIndex = nextIndex;
+      message.textContent = messages[messageIndex];
+    }
+  };
+
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    setProgress(100);
+    message.textContent = "Entering The Experience";
+
+    const exitDelay = reducedMotion ? 150 : 520;
+
+    window.setTimeout(() => {
+      loader.classList.add("is-exiting");
+      document.body.classList.remove("loading");
+
+      window.setTimeout(() => {
+        loader.remove();
+      }, reducedMotion ? 0 : 1100);
+    }, exitDelay);
+  };
+
+  const tick = (now) => {
+    if (finished) return;
+
+    // Let the loader feel like a real loading sequence without
+    // artificially blocking the page for too long.
+    if (loaded) {
+      target = 100;
+    } else if (now - startedAt > 4200) {
+      // Safety fallback for slow/blocked assets.
+      target = 100;
+    }
+
+    const step = reducedMotion ? 100 : (target - progress) * 0.055;
+    const next = target === 100
+      ? Math.min(100, progress + Math.max(0.7, step))
+      : Math.min(target, progress + Math.max(0.18, step));
+
+    setProgress(next);
+
+    if (target === 100 && next >= 99.95) {
+      finish();
+      return;
+    }
+
+    requestAnimationFrame(tick);
+  };
+
+  messageTimer = window.setInterval(() => {
+    if (finished || progress >= 95) return;
+    messageIndex = (messageIndex + 1) % messages.length;
+    message.textContent = messages[messageIndex];
+  }, 950);
+
+  window.addEventListener("load", () => {
+    loaded = true;
+  }, { once: true });
+
+  window.setTimeout(() => {
+    loaded = true;
+  }, 4500);
+
+  setProgress(0);
+  requestAnimationFrame(tick);
+
+  // Avoid leaving a timer behind if the loader is removed early.
+  const observer = new MutationObserver(() => {
+    if (!document.body.contains(loader)) {
+      window.clearInterval(messageTimer);
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true });
+
+  // Make the loader available to keyboard/screen-reader users without
+  // trapping focus behind it.
+  loader.setAttribute("role", "status");
 })();
 
 /* ================================================================
