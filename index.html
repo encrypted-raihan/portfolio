@@ -1963,9 +1963,384 @@ body.loading{
   }
 }
 
+
+/* ================================================================
+   MOBILE DESKTOP-ONLY GATE
+   Shows a dedicated editorial message on phones / compact screens.
+   ================================================================ */
+.mobile-desktop-gate{
+  display:none;
+}
+
+@media (max-width: 900px){
+  html,
+  body{
+    width:100%;
+    min-height:100%;
+    height:100%;
+    overflow:hidden !important;
+  }
+
+  .mobile-desktop-gate{
+    position:fixed;
+    inset:0;
+    z-index:999999;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding:
+      max(3.2rem, env(safe-area-inset-top) + 2.2rem)
+      1.45rem
+      max(2.2rem, env(safe-area-inset-bottom) + 1.5rem);
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 50% 23%, rgba(255,255,255,.88), transparent 24%),
+      radial-gradient(circle at 75% 76%, rgba(200,169,107,.045), transparent 22%),
+      linear-gradient(180deg, #f8f5ee 0%, #f3eee6 58%, #eee8df 100%);
+    color:#111;
+    isolation:isolate;
+  }
+
+  .mobile-desktop-gate::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:.06;
+    background-image:
+      linear-gradient(rgba(255,255,255,.42) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+    background-size:4px 4px;
+    mix-blend-mode:multiply;
+    z-index:-1;
+  }
+
+  .mobile-desktop-gate::after{
+    content:"R.S";
+    position:absolute;
+    right:-9rem;
+    bottom:-3.2rem;
+    font-family:var(--font-display);
+    font-size:min(44rem, 84vw);
+    font-weight:900;
+    line-height:.72;
+    letter-spacing:-.08em;
+    color:rgba(164,142,105,.055);
+    pointer-events:none;
+    user-select:none;
+    z-index:-1;
+  }
+
+  .mobile-gate-top{
+    width:100%;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:1rem;
+  }
+
+  .mobile-gate-mark{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:2.5rem;
+    font-weight:900;
+    line-height:.88;
+    letter-spacing:-.025em;
+    color:#171717;
+  }
+
+  .mobile-gate-meta{
+    margin:.15rem 0 0;
+    font-family:var(--font-body);
+    font-size:.62rem;
+    font-weight:500;
+    letter-spacing:.44em;
+    line-height:1.4;
+    text-transform:uppercase;
+    color:rgba(15,15,15,.82);
+    white-space:nowrap;
+  }
+
+  .mobile-gate-main{
+    width:100%;
+    max-width:520px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    margin:auto 0;
+    transform:translateY(-2vh);
+  }
+
+  .mobile-gate-icon-wrap{
+    position:relative;
+    display:grid;
+    place-items:center;
+    width:164px;
+    height:164px;
+    margin-bottom:3.6rem;
+    color:#b88e49;
+  }
+
+  .mobile-gate-icon-wrap::before{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    border:1.4px solid currentColor;
+    border-radius:50%;
+    opacity:.95;
+  }
+
+  .mobile-gate-icon{
+    position:relative;
+    width:88px;
+    height:76px;
+  }
+
+  .mobile-monitor{
+    position:absolute;
+    left:6px;
+    top:5px;
+    width:78px;
+    height:54px;
+    border:1.6px solid currentColor;
+    border-radius:3px;
+  }
+
+  .mobile-monitor::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-8px;
+    height:1.6px;
+    background:currentColor;
+    opacity:.75;
+  }
+
+  .mobile-stand{
+    position:absolute;
+    left:38px;
+    bottom:3px;
+    width:1.6px;
+    height:19px;
+    background:currentColor;
+  }
+
+  .mobile-base{
+    position:absolute;
+    left:27px;
+    bottom:1px;
+    width:28px;
+    height:1.6px;
+    background:currentColor;
+  }
+
+  .mobile-gate-exclaim{
+    position:absolute;
+    top:-19px;
+    right:-9px;
+    font-family:var(--font-display);
+    font-size:3rem;
+    font-weight:600;
+    line-height:1;
+    color:#b88e49;
+  }
+
+  .mobile-gate-title{
+    margin:0;
+    max-width:100%;
+    font-family:var(--font-display);
+    font-size:clamp(3.5rem, 14vw, 6rem);
+    font-weight:900;
+    line-height:.83;
+    letter-spacing:-.035em;
+    text-transform:uppercase;
+    color:#111;
+  }
+
+  .mobile-gate-title span{
+    display:block;
+  }
+
+  .mobile-gate-divider{
+    width:min(72%, 360px);
+    height:1px;
+    margin:3.4rem auto 2.8rem;
+    position:relative;
+    background:rgba(184,142,73,.78);
+  }
+
+  .mobile-gate-divider::before{
+    content:"✦";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-54%);
+    padding:0 .55rem;
+    background:#f2ede5;
+    color:#b88e49;
+    font-size:1rem;
+    line-height:1;
+  }
+
+  .mobile-gate-support{
+    margin:0;
+    max-width:29rem;
+    font-family:var(--font-body);
+    font-size:clamp(.94rem, 3.7vw, 1.15rem);
+    line-height:1.95;
+    letter-spacing:.08em;
+    color:rgba(18,18,18,.88);
+  }
+
+  .mobile-gate-note{
+    margin:2.45rem 0 0;
+    font-family:var(--font-body);
+    font-size:clamp(.9rem, 3.5vw, 1.04rem);
+    line-height:1.85;
+    color:rgba(18,18,18,.76);
+    max-width:26rem;
+  }
+
+  .mobile-gate-small-rule{
+    width:34px;
+    height:1px;
+    margin:2.75rem 0 2rem;
+    background:#b88e49;
+  }
+
+  .mobile-gate-thanks{
+    margin:0;
+    font-family:var(--font-body);
+    font-size:.72rem;
+    font-weight:500;
+    letter-spacing:.52em;
+    text-transform:uppercase;
+    color:#b88e49;
+  }
+
+  @media (max-width: 430px){
+    .mobile-desktop-gate{
+      padding-left:1.1rem;
+      padding-right:1.1rem;
+    }
+
+    .mobile-gate-main{
+      transform:translateY(-1.2vh);
+    }
+
+    .mobile-gate-icon-wrap{
+      width:142px;
+      height:142px;
+      margin-bottom:3.2rem;
+    }
+
+    .mobile-gate-icon-wrap::before{
+      width:138px;
+      height:138px;
+    }
+
+    .mobile-gate-title{
+      font-size:clamp(3.15rem, 15vw, 4.9rem);
+    }
+
+    .mobile-gate-divider{
+      margin-top:3rem;
+      margin-bottom:2.35rem;
+    }
+
+    .mobile-gate-support{
+      line-height:1.82;
+    }
+
+    .mobile-gate-note{
+      margin-top:2.15rem;
+    }
+
+    .mobile-gate-small-rule{
+      margin-top:2.35rem;
+      margin-bottom:1.65rem;
+    }
+  }
+
+  @media (max-height: 760px){
+    .mobile-gate-main{
+      transform:translateY(-1vh) scale(.9);
+      transform-origin:center center;
+      margin-top:-1.5rem;
+      margin-bottom:-1.5rem;
+    }
+
+    .mobile-gate-icon-wrap{
+      margin-bottom:2.4rem;
+    }
+
+    .mobile-gate-divider{
+      margin-top:2.6rem;
+      margin-bottom:2rem;
+    }
+
+    .mobile-gate-note{
+      margin-top:1.8rem;
+    }
+
+    .mobile-gate-small-rule{
+      margin-top:1.9rem;
+      margin-bottom:1.35rem;
+    }
+  }
+}
+
 </style>
 </head>
 <body class="loading">
+
+<!-- ================================================================
+     MOBILE / COMPACT SCREEN GATE
+     ================================================================ -->
+<div class="mobile-desktop-gate" id="mobileDesktopGate" aria-label="Desktop viewing notice">
+  <div class="mobile-gate-top">
+    <p class="mobile-gate-mark">R.S</p>
+    <p class="mobile-gate-meta">Portfolio &copy;</p>
+  </div>
+
+  <div class="mobile-gate-main">
+    <div class="mobile-gate-icon-wrap" aria-hidden="true">
+      <div class="mobile-gate-icon">
+        <span class="mobile-monitor"></span>
+        <span class="mobile-stand"></span>
+        <span class="mobile-base"></span>
+      </div>
+      <span class="mobile-gate-exclaim">!</span>
+    </div>
+
+    <h1 class="mobile-gate-title">
+      <span>PLEASE</span>
+      <span>OPEN ON</span>
+      <span>DESKTOP.</span>
+    </h1>
+
+    <div class="mobile-gate-divider" aria-hidden="true"></div>
+
+    <p class="mobile-gate-support">
+      THIS EXPERIENCE IS DESIGNED<br>
+      FOR LARGER SCREENS.
+    </p>
+
+    <span class="mobile-gate-small-rule" aria-hidden="true"></span>
+
+    <p class="mobile-gate-note">
+      For the best experience, please visit<br>
+      this website from a desktop or laptop.
+    </p>
+
+    <p class="mobile-gate-thanks">Thank You!</p>
+  </div>
+</div>
+
 
 <!-- ================================================================
      ASSET-FREE EDITORIAL LOADING SCREEN
