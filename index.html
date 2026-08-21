@@ -586,53 +586,261 @@ body.loaded .floating-nav{ transform: translateX(-50%) translateY(0); }
 
 
 /* ================================================================
-   TECH STACK
+   TECH STACK — THE ATELIER INDEX (experience-driven)
    ================================================================ */
 .stack-section{
-  width: min(1400px, 92vw);
-  margin: 0 auto;
-  padding: 8rem 0 9rem;
+  width: 100%;
+  margin: 0;
+  padding: 9rem 0 8rem;
   background: var(--editorial-bg);
 }
+.stack-inner{ width: min(1400px, 92vw); margin: 0 auto; }
+
 .stack-head{
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
   gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: 3.5rem;
+  align-items: end;
+  margin-bottom: 4.5rem;
 }
-.stack-eyebrow{ margin: 0 0 1rem; font-size: .78rem; letter-spacing: .45em; text-transform: uppercase; color: rgba(0,0,0,.45); }
+.stack-eyebrow{
+  margin: 0 0 1rem;
+  font-size: .72rem;
+  letter-spacing: .45em;
+  text-transform: uppercase;
+  color: #C8A96B;
+  font-weight: 500;
+}
 .stack-title{
   margin: 0;
-  font-size: clamp(2.4rem, 5.6vw, 5rem);
-  line-height: .9;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  line-height: .92;
   letter-spacing: .01em;
   text-transform: uppercase;
   font-weight: 600;
 }
-.stack-note{ max-width: 26rem; font-size: .98rem; line-height: 1.8; color: rgba(0,0,0,.6); margin: 0; }
-.stack-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  gap: 1rem;
+.stack-title em{ font-style: italic; font-weight: 500; text-transform: none; }
+.stack-note{
+  max-width: 26rem;
+  font-size: .98rem;
+  line-height: 1.9;
+  color: rgba(0,0,0,.6);
+  margin: 0 0 .5rem;
 }
-.stack-item{
-  border: 1px solid rgba(0,0,0,.09);
-  border-radius: 22px;
-  padding: 1.35rem 1.4rem;
-  background: rgba(255,255,255,.42);
-  box-shadow: 0 12px 40px rgba(0,0,0,.04);
-  transition: transform .35s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .35s ease;
-}
-.stack-item:hover, .stack-item:focus-visible{
-  transform: translateY(-4px);
-  border-color: rgba(0,0,0,.22);
-  box-shadow: 0 20px 54px rgba(0,0,0,.09);
-}
-.stack-item span{ display: block; font-size: .66rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(0,0,0,.42); margin-bottom: .6rem; }
-.stack-item strong{ display: block; font-size: 1.05rem; font-weight: 600; color: rgba(0,0,0,.92); line-height: 1.4; }
 
+/* ---------- Layout ---------- */
+.atelier{
+  display: grid;
+  grid-template-columns: minmax(250px, 330px) 1fr;
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: start;
+}
+
+/* ---------- Sticky specimen panel ---------- */
+.atelier-side{ position: sticky; top: 14vh; }
+.atelier-panel{ border-top: 1px solid rgba(0,0,0,.16); padding-top: 1.3rem; }
+.atelier-panel-label{ color: #C8A96B; display: block; }
+.atelier-panel-index{
+  margin: 1.6rem 0 .1rem;
+  font-family: var(--font-display);
+  font-size: clamp(4.2rem, 6vw, 6.2rem);
+  font-weight: 900;
+  line-height: .85;
+  letter-spacing: .02em;
+  color: rgba(0,0,0,.09);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.atelier-panel-title{
+  margin: 0 0 1rem;
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  transition: opacity .28s ease, transform .28s ease;
+}
+.atelier-panel-copy{
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.95;
+  color: rgba(0,0,0,.62);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.atelier-panel.is-switching .atelier-panel-index,
+.atelier-panel.is-switching .atelier-panel-title,
+.atelier-panel.is-switching .atelier-panel-copy{
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* ---------- Index rows ---------- */
+.atelier-index{ border-top: 1px solid rgba(0,0,0,.14); }
+.atelier-row{
+  border-bottom: 1px solid rgba(0,0,0,.14);
+  transition: opacity .45s ease;
+}
+.atelier-index.has-active .atelier-row.is-in:not(.is-active){ opacity: .35; }
+
+.atelier-row-head{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 2.6vw, 2.4rem);
+  padding: clamp(1.35rem, 2.6vw, 2rem) 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.atelier-row-num{
+  font-size: .7rem;
+  letter-spacing: .32em;
+  color: rgba(0,0,0,.35);
+  font-variant-numeric: tabular-nums;
+  transition: color .3s ease;
+}
+.atelier-row-title{
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.8vw, 3.6rem);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.atelier-row-meta{ display: flex; align-items: center; gap: 1.1rem; }
+.atelier-row-count{
+  font-size: .66rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.4);
+}
+.atelier-row-plus{ position: relative; width: 14px; height: 14px; flex: none; }
+.atelier-row-plus::before,
+.atelier-row-plus::after{
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 100%; height: 1px;
+  background: rgba(0,0,0,.65);
+  transform: translateY(-50%);
+}
+.atelier-row-plus::after{
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+}
+.atelier-row.is-active .atelier-row-num{ color: #C8A96B; }
+.atelier-row.is-active .atelier-row-title{ transform: translateX(12px); }
+.atelier-row.is-active .atelier-row-plus::after{ transform: translateY(-50%) rotate(0deg); }
+
+.atelier-row-body{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .7s cubic-bezier(.22,1,.36,1);
+}
+.atelier-row-clip{ overflow: hidden; min-height: 0; }
+.atelier-row.is-active .atelier-row-body{ grid-template-rows: 1fr; }
+.atelier-row-body-inner{
+  padding: 0 0 clamp(1.7rem, 3vw, 2.5rem) clamp(3.2rem, 6vw, 5.2rem);
+}
+.atelier-tools{
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: .6rem;
+}
+.atelier-tools .tool{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  color: rgba(0,0,0,.88);
+  white-space: nowrap;
+}
+.atelier-tools .tool-sep{
+  flex: none;
+  align-self: center;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #C8A96B;
+  margin: 0 1rem;
+}
+.atelier-row-copy{
+  margin: 1.2rem 0 0;
+  max-width: 42rem;
+  font-size: .95rem;
+  line-height: 1.95;
+  color: rgba(0,0,0,.62);
+}
+
+/* ---------- Tool marquee ---------- */
+.atelier-marquee{
+  margin-top: 4.5rem;
+  border-top: 1px solid rgba(0,0,0,.12);
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  padding: 1.05rem 0;
+  overflow: hidden;
+}
+.atelier-marquee-track{
+  display: flex;
+  width: max-content;
+  animation: atelier-scroll 40s linear infinite;
+}
+.atelier-marquee-track span{
+  display: flex;
+  align-items: center;
+  font-size: .7rem;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.48);
+  white-space: nowrap;
+  padding-right: 3rem;
+}
+.atelier-marquee-track span::after{
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #C8A96B;
+  margin-left: 3rem;
+}
+@keyframes atelier-scroll{ to{ transform: translateX(-50%); } }
+.atelier-marquee:hover .atelier-marquee-track{ animation-play-state: paused; }
+
+/* ---------- Scroll reveal (armed by JS only) ---------- */
+.stack-inner.js-reveal .atelier-row,
+.stack-inner.js-reveal .stack-head > *,
+.stack-inner.js-reveal .atelier-side{
+  transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+}
+.stack-inner.js-reveal .atelier-row:not(.is-in),
+.stack-inner.js-reveal .stack-head > *:not(.is-in),
+.stack-inner.js-reveal .atelier-side:not(.is-in){
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px){
+  .atelier{ grid-template-columns: 1fr; }
+  .atelier-side{ display: none; }
+  .atelier-row-body-inner{ padding-left: 0; }
+  .stack-head{ grid-template-columns: 1fr; align-items: start; }
+}
+@media (max-width: 600px){
+  .atelier-row-count{ display: none; }
+  .atelier-row-title{ font-size: clamp(1.45rem, 6.5vw, 2rem); }
+}
+@media (prefers-reduced-motion: reduce){
+  .atelier-marquee-track{ animation: none; }
+  .atelier-row-title, .atelier-row-body, .atelier-panel-index,
+  .atelier-panel-title, .atelier-panel-copy{ transition: none; }
+  .stack-inner.js-reveal .atelier-row:not(.is-in),
+  .stack-inner.js-reveal .stack-head > *:not(.is-in),
+  .stack-inner.js-reveal .atelier-side:not(.is-in){ opacity: 1; transform: none; }
+}
 /* ================================================================
    NOW / CURRENTLY BUILDING
    ================================================================ */
@@ -2733,26 +2941,208 @@ body.loading{
 </section>
 
 
-<!-- ================================================================
-     TECH STACK
-     ================================================================ -->
+<!-- ============================================================
+     TECH STACK — THE ATELIER INDEX
+     ============================================================ -->
 <section class="stack-section" id="stack">
-  <div class="stack-head">
-    <div>
-      <p class="stack-eyebrow">Toolkit</p>
-      <h2 class="stack-title">What I Build With</h2>
+  <div class="stack-inner">
+
+    <div class="stack-head">
+      <div>
+        <p class="stack-eyebrow">The Instrument Room</p>
+        <h2 class="stack-title">What I <em>build</em> with</h2>
+      </div>
+      <p class="stack-note">
+        Tools don't make the work — but the right ones, treated like instruments
+        rather than line items, change what the work can become. This is the room
+        every project is built from.
+      </p>
     </div>
-    <p class="stack-note">The stack behind every client site, dashboard, and experiment — chosen for speed, reliability, and room to scale.</p>
-  </div>
-  <div class="stack-grid">
-    <div class="stack-item" tabindex="0"><span>Framework</span><strong>Next.js 14 / 15</strong></div>
-    <div class="stack-item" tabindex="0"><span>Backend</span><strong>Firebase</strong></div>
-    <div class="stack-item" tabindex="0"><span>Backend</span><strong>Supabase</strong></div>
-    <div class="stack-item" tabindex="0"><span>3D / Motion</span><strong>Three.js</strong></div>
-    <div class="stack-item" tabindex="0"><span>Animation</span><strong>GSAP &amp; ScrollTrigger</strong></div>
-    <div class="stack-item" tabindex="0"><span>Commerce</span><strong>WhatsApp Booking &amp; Ordering</strong></div>
-    <div class="stack-item" tabindex="0"><span>SEO</span><strong>Structured Data &amp; JSON-LD</strong></div>
-    <div class="stack-item" tabindex="0"><span>Performance</span><strong>Core Web Vitals Tuning</strong></div>
+
+    <div class="atelier">
+
+      <aside class="atelier-side">
+        <div class="atelier-panel">
+          <span class="micro-label atelier-panel-label">Now Viewing</span>
+          <div class="atelier-panel-index">01</div>
+          <h3 class="atelier-panel-title">Frameworks</h3>
+          <p class="atelier-panel-copy">
+            Every build starts at the architecture layer — typed end-to-end,
+            server-first, and structured so the front-end stays quick long
+            after launch.
+          </p>
+        </div>
+      </aside>
+
+      <div class="atelier-index">
+
+        <article class="atelier-row" data-index="01" data-title="Frameworks"
+          data-copy="Every build starts at the architecture layer — typed end-to-end, server-first, and structured so the front-end stays quick long after launch.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">01</span>
+            <span class="atelier-row-title">Frameworks</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">1 Instrument</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">Next.js 14 / 15</span>
+                </p>
+                <p class="atelier-row-copy">
+                  App Router, server components and a structure chosen for the
+                  long haul — the foundation that keeps fast sites fast as they
+                  grow.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="atelier-row" data-index="02" data-title="Backend &amp; Data"
+          data-copy="The invisible layer — auth, realtime data and infrastructure that stays out of the way and never becomes the story.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">02</span>
+            <span class="atelier-row-title">Backend &amp; Data</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">2 Instruments</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">Firebase</span><span class="tool-sep"></span>
+                  <span class="tool">Supabase</span>
+                </p>
+                <p class="atelier-row-copy">
+                  Auth, realtime data, storage and serverless functions — the
+                  invisible plumbing that lets a small team ship like a studio
+                  ten times its size.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="atelier-row" data-index="03" data-title="3D &amp; Motion"
+          data-copy="Where interfaces stop being read and start being felt.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">03</span>
+            <span class="atelier-row-title">3D &amp; Motion</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">2 Instruments</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">Three.js</span><span class="tool-sep"></span>
+                  <span class="tool">GSAP &amp; ScrollTrigger</span>
+                </p>
+                <p class="atelier-row-copy">
+                  The craft layer. WebGL scenes and scroll choreography that turn
+                  a page into a place — movement with intent, never decoration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="atelier-row" data-index="04" data-title="Business Systems"
+          data-copy="The bridge between a beautiful site and a running business.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">04</span>
+            <span class="atelier-row-title">Business Systems</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">1 Instrument</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">WhatsApp Booking &amp; Ordering</span>
+                </p>
+                <p class="atelier-row-copy">
+                  Where the site meets the business. Booking and ordering wired
+                  straight into WhatsApp — no app downloads, no friction, just a
+                  conversation that converts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="atelier-row" data-index="05" data-title="Visibility"
+          data-copy="Craft that search engines can actually read.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">05</span>
+            <span class="atelier-row-title">Visibility</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">1 Instrument</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">Structured Data &amp; JSON-LD</span>
+                </p>
+                <p class="atelier-row-copy">
+                  Beautiful and findable. Structured data so machines understand
+                  the site as precisely as people do — rich results, honest
+                  rankings.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="atelier-row" data-index="06" data-title="Performance"
+          data-copy="The discipline behind the polish — measured, tuned, verified.">
+          <button class="atelier-row-head" aria-expanded="false">
+            <span class="atelier-row-num">06</span>
+            <span class="atelier-row-title">Performance</span>
+            <span class="atelier-row-meta">
+              <span class="atelier-row-count">1 Instrument</span>
+              <span class="atelier-row-plus" aria-hidden="true"></span>
+            </span>
+          </button>
+          <div class="atelier-row-body">
+            <div class="atelier-row-clip">
+              <div class="atelier-row-body-inner">
+                <p class="atelier-tools">
+                  <span class="tool">Core Web Vitals Tuning</span>
+                </p>
+                <p class="atelier-row-copy">
+                  Speed as a feature. Every millisecond accounted for — because
+                  premium is felt in the first hundred milliseconds, long before
+                  it's seen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="atelier-marquee" aria-hidden="true">
+      <div class="atelier-marquee-track">
+        <span>Next.js</span><span>Firebase</span><span>Supabase</span><span>Three.js</span><span>GSAP</span><span>ScrollTrigger</span><span>WhatsApp Systems</span><span>JSON-LD</span><span>Core Web Vitals</span>
+        <span>Next.js</span><span>Firebase</span><span>Supabase</span><span>Three.js</span><span>GSAP</span><span>ScrollTrigger</span><span>WhatsApp Systems</span><span>JSON-LD</span><span>Core Web Vitals</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -3558,6 +3948,84 @@ body.loading{
     );
   }
 })();
+
+(function(){
+  const index = document.querySelector('.atelier-index');
+  const rows  = Array.from(document.querySelectorAll('.atelier-row'));
+  const panel = document.querySelector('.atelier-panel');
+  if(!index || !rows.length) return;
+
+  const pIndex = panel && panel.querySelector('.atelier-panel-index');
+  const pTitle = panel && panel.querySelector('.atelier-panel-title');
+  const pCopy  = panel && panel.querySelector('.atelier-panel-copy');
+  let switchTimer = null;
+  let activeRow = null;
+
+  function fillPanel(row){
+    if(!panel) return;
+    pIndex.textContent = row.dataset.index || '';
+    pTitle.textContent = row.dataset.title || '';
+    pCopy.textContent  = row.dataset.copy  || '';
+  }
+
+  function activate(row, instant){
+    if(row === activeRow) return;
+    activeRow = row;
+    rows.forEach(r => {
+      const on = r === row;
+      r.classList.toggle('is-active', on);
+      const head = r.querySelector('.atelier-row-head');
+      if(head) head.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    index.classList.add('has-active');
+
+    if(panel){
+      if(instant){
+        clearTimeout(switchTimer);
+        panel.classList.remove('is-switching');
+        fillPanel(row);
+      } else {
+        panel.classList.add('is-switching');
+        clearTimeout(switchTimer);
+        switchTimer = setTimeout(() => {
+          fillPanel(row);
+          panel.classList.remove('is-switching');
+        }, 240);
+      }
+    }
+  }
+
+  rows.forEach(row => {
+    const head = row.querySelector('.atelier-row-head');
+    if(!head) return;
+    head.addEventListener('click', () => activate(row, false));
+    if(window.matchMedia('(hover: hover)').matches){
+      head.addEventListener('mouseenter', () => activate(row, false));
+    }
+  });
+
+  // First row open by default
+  activate(rows[0], true);
+
+  // Scroll reveal — JS-armed, so nothing hides if scripts fail
+  const inner = document.querySelector('.stack-inner');
+  if(inner && 'IntersectionObserver' in window){
+    inner.classList.add('js-reveal');
+    const targets = [...inner.querySelectorAll('.stack-head > *, .atelier-side, .atelier-row')];
+    let seen = 0;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const d = (seen++ % 6) * 90;
+          setTimeout(() => e.target.classList.add('is-in'), d);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+    targets.forEach(t => io.observe(t));
+  }
+})();
+
 </script>
 </body>
 </html>
